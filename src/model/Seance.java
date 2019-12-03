@@ -30,7 +30,7 @@ public class Seance {
     /**
      * 
      */
-    public List<Adherent> listAdherentsInscrit;
+    public List<User> listUserInscrit;
 
     /**
      * Default constructor
@@ -45,23 +45,23 @@ public class Seance {
 
 
     /**
-     * @param idAdherent
+     * @param idUser
      */
-    public void adherentEstInscrit(int idAdherent) {
+    public void UserEstInscrit(int idUser) {
         // TODO implement here
     }
 
     /**
-     * @param idAdherent
+     * @param idUser
      */
-    public void adherentEstCertain(int idAdherent) {
+    public void UserEstCertain(int idUser) {
         // TODO implement here
     }
 
     /**
-     * @param idAdherent
+     * @param idUser
      */
-    public void adherentApporteJeux(int idAdherent) {
+    public void UserApporteJeux(int idUser) {
         // TODO implement here
     }
 

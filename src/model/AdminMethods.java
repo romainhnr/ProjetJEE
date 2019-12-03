@@ -4,28 +4,7 @@ import java.util.*;
 /**
  * 
  */
-public class Admin {
-
-    /**
-     * 
-     */
-    private String loginAdmin;
-
-    /**
-     * 
-     */
-    private String mdpAdmin;
-
-
-
-    /**
-     * Default constructor
-     */
-    public Admin(String loginAdmin, String mdpAdmin) {
-        this.loginAdmin = loginAdmin;
-        this.mdpAdmin = mdpAdmin;
-    }
-
+public class AdminMethods {
 
     /**
      * 
@@ -56,9 +35,9 @@ public class Admin {
     }
 
     /**
-     * @param idAdherent
+     * @param idUser
      */
-    private void ReinitialiserMdp(UUID idAdherent) {
+    private void ReinitialiserMdp(UUID idUser) {
         // TODO implement here
     }
 

@@ -35,9 +35,9 @@ public class Messagerie {
     }
 
     /**
-     * @param idAdherent
+     * @param idUser
      */
-    public void EnvoieMessage(UUID idAdherent) {
+    public void EnvoieMessage(UUID idUser) {
         // TODO implement here
     }
 
