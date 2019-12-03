@@ -19,21 +19,34 @@
           }
           else if(currentUser.getRole() == User.Role.ADMIN){
             out.println("<h1> Bienvenue Admin " + currentUser.getNom() + "</h1>");
+            %>
+              <div class="links">
+                <ul>
+                  <li><a href="seance.jsp">Seance</a></li>
+                  <li><a href="#">Messagerie</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="logout">Déconnexion</a></li>
+                  <li> <a href='#'>Gestion Adherents</a> </li>
+                </ul>
+              </div>
+            <%
           }
           else{
             out.println("<h1> Bienvenue" + currentUser.getNom() + "</h1>");
+            %>
+              <div class="links">
+                <ul>
+                  <li><a href="seance.jsp">Seance</a></li>
+                  <li><a href="#">Messagerie</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="logout">Déconnexion</a></li>
+                </ul>
+              </div>
+        <%
           }
         %>
       </div>
-      <div class="links">
-        <ul>
-          <li><a href="seance.jsp">Seance</a></li>
-          <li><a href="#">Messagerie</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="logout">Déconnexion</a></li>
-          <% if(currentUser.getRole() == User.Role.ADMIN) { out.print("<li> <a href='#'>Gestion Adherents</a> </li>"); }%>
-        </ul>
-      </div>
+
     </nav>
   </head>
   <body>
