@@ -1,5 +1,6 @@
 package servlet;
 
+import model.Seance;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -22,7 +27,15 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
             session.setAttribute("user", user1);
-            this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
+
+            Seance seance1 = new Seance(LocalDate.now(), LocalTime.now(), LocalTime.now());
+            Seance seance2 = new Seance(LocalDate.of(2020, 01, 01), LocalTime.of(15, 05), LocalTime.of(16, 05));
+            List<Seance> listSeance = new ArrayList<>();
+            listSeance.add(seance1);
+            listSeance.add(seance2);
+            session.setAttribute("listSeance", listSeance);
+
+        this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
         {
