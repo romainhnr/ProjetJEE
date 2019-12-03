@@ -16,7 +16,7 @@
       </div>
       <div class="links">
         <ul>
-          <li><a href="#">Seance</a></li>
+          <li><a href="seance.jsp">Seance</a></li>
           <li><a href="#">Messagerie</a></li>
           <li><a href="#">Profile</a></li>
           <li><a href="logout">Déconnexion</a></li>
