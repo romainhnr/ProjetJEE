@@ -10,6 +10,7 @@
   <head>
     <%  User currentUser = ((User)(session.getAttribute("user"))); %>
     <title>ProjetJEE</title>
+
     <nav>
       <div class="logo">
         <%
@@ -25,8 +26,8 @@
                   <li><a href="seance.jsp">Seance</a></li>
                   <li><a href="#">Messagerie</a></li>
                   <li><a href="#">Profile</a></li>
-                  <li><a href="logout">Déconnexion</a></li>
                   <li> <a href='#'>Gestion Adherents</a> </li>
+                  <li><a href="logout">Déconnexion</a></li>
                 </ul>
               </div>
             <%
@@ -46,9 +47,10 @@
           }
         %>
       </div>
-
     </nav>
+
   </head>
+
   <body>
 
   </body>
