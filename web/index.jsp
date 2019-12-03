@@ -20,7 +20,7 @@
           else if(currentUser.getRole() == User.Role.ADMIN){
             out.println("<h1> Bienvenue Admin " + currentUser.getNom() + "</h1>");
             %>
-              <div class="links">
+              <div class="menu">
                 <ul>
                   <li><a href="seance.jsp">Seance</a></li>
                   <li><a href="#">Messagerie</a></li>
@@ -34,7 +34,7 @@
           else{
             out.println("<h1> Bienvenue" + currentUser.getNom() + "</h1>");
             %>
-              <div class="links">
+              <div class="menu">
                 <ul>
                   <li><a href="seance.jsp">Seance</a></li>
                   <li><a href="#">Messagerie</a></li>
