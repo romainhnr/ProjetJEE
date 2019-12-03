@@ -12,7 +12,18 @@
     <title>ProjetJEE</title>
     <nav>
       <div class="logo">
-        Navbarre
+        <%
+
+          if(currentUser == null){
+            out.println("<a href ='login.jsp'> Connectez-vous </a>");
+          }
+          else if(currentUser.getRole() == User.Role.ADMIN){
+            out.println("<h1> Bienvenue Admin " + currentUser.getNom() + "</h1>");
+          }
+          else{
+            out.println("<h1> Bienvenue" + currentUser.getNom() + "</h1>");
+          }
+        %>
       </div>
       <div class="links">
         <ul>
@@ -26,22 +37,6 @@
     </nav>
   </head>
   <body>
-  <%
-
-    if(currentUser == null){
-      out.println("<h1> Vous n'êtes pas connecté</h1>");
-      out.println("<a href ='login.jsp'> Connectez-vous </a>");
-    }
-    else if(currentUser.getRole() == User.Role.ADMIN){
-      out.println("<h1> Bienvenue Admin </h1>");
-      out.println("<h2> Nom : " + currentUser.getNom() + "</h2>");
-    }
-
-    else{
-      out.println("<h1> Bienvenue Utilisateur </h1>");
-      out.println("<h2> Nom : " + currentUser.getNom() + "</h2>");
-    }
-  %>
 
   </body>
 </html>
