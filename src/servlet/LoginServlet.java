@@ -22,26 +22,27 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
+        Seance seance1 = new Seance(LocalDate.now(), LocalTime.now(), LocalTime.now());
+        Seance seance2 = new Seance(LocalDate.of(2020, 01, 01), LocalTime.of(15, 05), LocalTime.of(16, 05));
+        List<Seance> listSeance = new ArrayList<>();
+        listSeance.add(seance1);
+        listSeance.add(seance2);
+
+
         if (login.equals("admin") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
             session.setAttribute("user", user1);
-
-            Seance seance1 = new Seance(LocalDate.now(), LocalTime.now(), LocalTime.now());
-            Seance seance2 = new Seance(LocalDate.of(2020, 01, 01), LocalTime.of(15, 05), LocalTime.of(16, 05));
-            List<Seance> listSeance = new ArrayList<>();
-            listSeance.add(seance1);
-            listSeance.add(seance2);
             session.setAttribute("listSeance", listSeance);
-
-        this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
             User user2 = new User("toto", "root", "toto", User.Role.USER);
             session.setAttribute("user", user2);
+            session.setAttribute("listSeance", listSeance);
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else{
