@@ -12,7 +12,7 @@
     <title>ProjetJEE</title>
     <nav>
       <div class="logo">
-        Logo texte ou image
+        Navbarre
       </div>
       <div class="links">
         <ul>
