@@ -7,24 +7,9 @@ import java.time.*;
  */
 public class Messagerie {
 
-    /**
-     * 
-     */
     private UUID idMessage;
-
-    /**
-     * 
-     */
     private String texteMessage;
-
-    /**
-     * 
-     */
     private LocalDateTime dateTimeMessage;
-
-    /**
-     * 
-     */
     private Boolean estLu;
 
 

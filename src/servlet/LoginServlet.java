@@ -1,5 +1,7 @@
 package servlet;
 
+import model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,21 +20,21 @@ public class LoginServlet extends HttpServlet {
         if (login.equals("admin") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
-            //User user1 = new User("jean", User.Role.ADMIN);
-            //session.setAttribute("user", user1);
+            User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
+            session.setAttribute("user", user1);
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
-            //User user2 = new User("toto", User.Role.USER);
-            //session.setAttribute("user", user2);
+            User user2 = new User("toto", "root", "toto", User.Role.USER);
+            session.setAttribute("user", user2);
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else{
             String error_message = "Login et/ou mot de passe incorrect !";
             request.setAttribute("message", error_message);
-            this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher( "/login.jsp" ).forward( request, response );
         }
 
     }

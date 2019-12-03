@@ -6,31 +6,11 @@ import java.util.*;
  */
 public class User {
 
-    /**
-     * 
-     */
     private UUID idUser;
-
-    /**
-     * 
-     */
     private String login;
-
-    /**
-     * 
-     */
     private String password;
-
-    private Role role;
-
-    /**
-     * 
-     */
     public String nom;
-
-    /**
-     * 
-     */
+    private Role role;
     public List<Jeux> listeJeux;
 
     /**
@@ -38,33 +18,40 @@ public class User {
      */
     private TypeInscription typeInscription;
 
-    /**
-     * 
-     */
     private Integer nbAdherentMinInscription;
 
     public enum Role {
         USER,
         ADMIN;
     }
-
     public enum TypeInscription {
         CERTAIN,
         INCERTAIN;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
     /**
      * Default constructor
      */
-    public User(String login, String nom, Role role,TypeInscription typeInscription, List<Jeux> listeJeux, Integer nbAdherentMinInscription) {
+    public User(String login, String password, String nom, Role role) {
         this.idUser = UUID.randomUUID();
         this.login = login;
-        this.role = role;
-        this.password = generatePassword();
+        this.password = password;
         this.nom = nom;
-        this.listeJeux = listeJeux;
-        this.typeInscription = typeInscription;
-
+        this.role = role;
+        this.listeJeux = null;
+        this.typeInscription = null;
         this.nbAdherentMinInscription = null;
     }
 

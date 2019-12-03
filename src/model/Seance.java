@@ -7,29 +7,10 @@ import java.time.*;
  */
 public class Seance {
 
-    /**
-     * 
-     */
     private UUID idSeance;
-
-    /**
-     * 
-     */
     public LocalDate date;
-
-    /**
-     * 
-     */
     public LocalTime horaireDebut;
-
-    /**
-     * 
-     */
     public LocalTime horaireFin;
-
-    /**
-     * 
-     */
     public List<User> listUserInscrit;
 
     /**

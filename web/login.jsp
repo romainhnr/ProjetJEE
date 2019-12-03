@@ -24,6 +24,14 @@
             <br />
             <input type="submit" value="Envoyer" />
         </p>
+
+        <% if((request.getAttribute("message")) != null)
+        {
+            String error_message = (String) request.getAttribute("message");
+            out.println(error_message);
+        }
+
+        %>
     </form>
 </body>
 </html>

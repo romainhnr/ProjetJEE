@@ -6,9 +6,6 @@ import java.util.*;
  */
 public class AdminMethods {
 
-    /**
-     * 
-     */
     private void CreerSeance() {
         // TODO implement here
     }
