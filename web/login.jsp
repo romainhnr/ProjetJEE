@@ -13,12 +13,12 @@
 <body>
     <form action="login" method="post">
         <p>
-            <label for="pseudo"></label>
+            <label>Login</label>
             <input type="text" name="login" placeholder="login"  id="inputLogin"/>
 
             <br />
-            <label for="pass"></label>
-            <input type="password" name="password" placeholder="mdp" id="inputPassword"/>
+            <label>Mot de passe</label>
+            <input type="password" name="password" placeholder="mot de passe" id="inputPassword"/>
 
 
             <br />
