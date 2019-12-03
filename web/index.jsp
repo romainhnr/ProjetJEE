@@ -8,11 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
+    <%  User currentUser = ((User)(session.getAttribute("user"))); %>
     <title>ProjetJEE</title>
+    <nav>
+      <div class="logo">
+        Logo texte ou image
+      </div>
+      <div class="links">
+        <ul>
+          <li><a href="#">Seance</a></li>
+          <li><a href="#">Messagerie</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="logout">Déconnexion</a></li>
+          <% if(currentUser.getRole() == User.Role.ADMIN) { out.print("<li> <a href='#'>Gestion Adherents</a> </li>"); }%>
+        </ul>
+      </div>
+    </nav>
   </head>
   <body>
   <%
-    User currentUser = ((User)(session.getAttribute("user")));
 
     if(currentUser == null){
       out.println("<h1> Vous n'êtes pas connecté</h1>");
@@ -21,13 +35,11 @@
     else if(currentUser.getRole() == User.Role.ADMIN){
       out.println("<h1> Bienvenue Admin </h1>");
       out.println("<h2> Nom : " + currentUser.getNom() + "</h2>");
-      out.println("<a href = 'logout'> Se déconnecter </a>");
     }
 
     else{
       out.println("<h1> Bienvenue Utilisateur </h1>");
       out.println("<h2> Nom : " + currentUser.getNom() + "</h2>");
-      out.println("<a href = 'logout'> Se déconnecter </a>");
     }
   %>
 
