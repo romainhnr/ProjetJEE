@@ -12,30 +12,22 @@
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
     <nav>
+        <%
+            if(currentUser == null){
+                out.println("<h1>Vous n'êtes pas connecté</h1>");
+                out.println("<a href ='login.jsp'> Connectez-vous </a>");
+            }
+            else {
+            %>
             <div class="links">
                 <ul class="menu">
-                    <li><%
-                        if(currentUser == null){
-                            out.println("<h1>Vous n'êtes pas connecté</h1>");
-                            out.println("<a href ='login.jsp'> Connectez-vous </a>");
-                        }
-                        else {
-                            if (currentUser.getRole() == User.Role.ADMIN) {
-                                out.println("<h1> Bienvenue Admin " + currentUser.getNom() + "</h1>");
-                            }
-                            else{
-                                out.println("<h1> Bienvenue " + currentUser.getNom() + "</h1>");
-                            }
-
-                    %></li>
-                    <li class="seance"><a href="seance.jsp">Séance</a></li>
-                    <li class="messagerie"><a href="#">Messagerie</a></li>
                     <li class="profil"><a href="profil.jsp">Profil</a></li>
+                    <li class="seance"><a href="seance.jsp">Séances</a></li>
+                    <li class="messagerie"><a href="messagerie">Messagerie</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
                     <li class="gestion"> <a href='#'>Gestion Adherents</a> </li>
                     <% } %>
                     <li><a href="logout">Déconnexion</a></li>
-
                 </ul>
             </div>
             <%

@@ -46,9 +46,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("listSeance", listSeance);
             Jeux jeux1 = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
             Jeux jeux2 = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
-
             user2.listeJeux.add(jeux1);
             user2.listeJeux.add(jeux2);
+            session.setAttribute("listMessages", user2.listeMessages);
+
 
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }

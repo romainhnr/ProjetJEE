@@ -5,7 +5,7 @@ import java.time.*;
 /**
  * 
  */
-public class Messagerie {
+public class Message {
 
     private UUID idMessage;
     private String texteMessage;
@@ -16,7 +16,12 @@ public class Messagerie {
     /**
      * Default constructor
      */
-    public Messagerie() {
+    public Message(String texteMessage, LocalDateTime dateTimeMessage, Boolean estLu) {
+        this.idMessage = UUID.randomUUID();
+        this.texteMessage = texteMessage;
+        this.dateTimeMessage = dateTimeMessage;
+        this.estLu = estLu;
+
     }
 
     /**

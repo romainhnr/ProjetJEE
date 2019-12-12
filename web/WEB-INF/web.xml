@@ -16,10 +16,18 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>servlet.LogoutServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Messagerie</servlet-name>
+        <servlet-class>servlet.MessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Messagerie</servlet-name>
+        <url-pattern>/messagerie</url-pattern>
     </servlet-mapping>
 
 
