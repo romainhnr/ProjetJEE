@@ -18,10 +18,10 @@
         List<Seance> listSeance = (List<Seance>) (session.getAttribute("listSeance"));
 
         for (Seance seance : listSeance) {
-            out.println("<h1> Séance </h1>");
-            out.println("<h2> Date : " + seance.date + "</h2>");
-            out.println("<h2> Horaire de début : " + seance.horaireDebut + "</h2>");
-            out.println("<h2> Horaire de fin : " + seance.horaireFin + "</h2>");
+            out.println("<h2> Séance </h2>");
+            out.println("<h3> Date : " + seance.date + "</h2>");
+            out.println("<h3> Horaire de début : " + seance.horaireDebut + "</h3>");
+            out.println("<h3> Horaire de fin : " + seance.horaireFin + "</h3>");
             out.println("<a href='#'>S'inscrire de manière certaine</a>");
             out.println("<a href='#'>S'inscrire de manière incertaine</a>");
             out.println("<a href='#'>Voir la liste des inscrits</a>");

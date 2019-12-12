@@ -22,11 +22,11 @@
             %>
             <div class="links">
                 <ul>
-                    <li><a href="seance.jsp">Séance</a></li>
-                    <li><a href="#">Messagerie</a></li>
                     <li><a href="profil.jsp">Profil</a></li>
+                    <li><a href="seance.jsp">Séances</a></li>
+                    <li><a href="#">Messagerie</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
-                    <li> <a href='#'>Gestion Adherents</a> </li>
+                    <li> <a href='#'>Gestion Adhérents</a> </li>
                     <% } %>
                     <li><a href="logout">Déconnexion</a></li>
                 </ul>
