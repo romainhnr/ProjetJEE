@@ -33,13 +33,13 @@
                     <li><a href="#">Messagerie</a></li>
                     <li><a href="profil.jsp">Profil</a></li>
                     <li><a href="logout">Déconnexion</a></li>
-                    <% if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) { %>
+                    <% if(currentUser.getRole() == User.Role.ADMIN) { %>
                     <li> <a href='#'>Gestion Adherents</a> </li>
                     <% } %>
                 </ul>
             </div>
             <%
-                    }
+                }
             %>
 
     </nav>
