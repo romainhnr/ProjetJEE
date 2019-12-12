@@ -10,23 +10,26 @@
 <body>
 <%
     if(currentUser != null) {
+        out.println("<h1>Bienvenue sur votre profil, " + currentUser.getNom() + " :</h1>");
 
-        Jeux jeux1 = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
-        Jeux jeux2 = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
+        if(currentUser.getJeux().isEmpty()){
+            out.println("<h2>Vous n'avez pas encore ajouté de jeu à votre profil</h2>");
+            out.println("<a href='#'> Ajouter un jeu </a>");
 
-        currentUser.listeJeux.add(jeux1);
-        currentUser.listeJeux.add(jeux2);
+        }
+        else {
+            out.println("<h2>Voici vos jeux : </h2>");
+            for (Jeux jeux : currentUser.getJeux()) {
+                out.println("<h2> Jeux </h3>");
+                out.println("<h3> Titre : " + jeux.titre + "</h3>");
+                out.println("<h3> Description : " + jeux.description + "</h3>");
+                out.println("<h3> Thème : " + jeux.theme + "</h3>");
+                out.println("<h3> Durée : " + jeux.duree + " min.</h3>");
+                out.println("<h3> Nb. joueur min. : " + jeux.nbJoueurMin + "</h3>");
+                out.println("<h3> Nb. joueur max. : " + jeux.nbJoueurMax + "</h3>");
 
-        out.println("<h1>Voici vos jeux : </h1>");
-        for (Jeux jeux : currentUser.getJeux()) {
-            out.println("<h1> Jeux </h1>");
-            out.println("<h2> Titre : " + jeux.titre + "</h2>");
-            out.println("<h2> Description : " + jeux.description + "</h2>");
-            out.println("<h2> Thème : " + jeux.theme + "</h2>");
-            out.println("<h2> Durée : " + jeux.duree + " min.</h2>");
-            out.println("<h2> Nb. joueur min. : " + jeux.nbJoueurMin + "</h2>");
-            out.println("<h2> Nb. joueur max. : " + jeux.nbJoueurMax + "</h2>");
-
+            }
+            out.println("<a href='#'> Ajouter un nouveau jeu </a>");
         }
     }
 
