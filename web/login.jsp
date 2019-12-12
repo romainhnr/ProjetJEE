@@ -20,7 +20,7 @@
                 <label for="inputPassword">Mot de passe: </label></br>
                 <input type="password" name="password" placeholder="mot de passe" id="inputPassword"/>
                 </br></br>
-                <input type="submit" value="Envoyer" />
+                <input type="submit" value="Envoyer" /></br></br>
 
             <% if((request.getAttribute("error_message_login")) != null)
             {
