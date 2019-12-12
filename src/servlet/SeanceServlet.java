@@ -28,12 +28,11 @@ public class SeanceServlet extends HttpServlet {
 
         Seance newSeance = new Seance(LD_dateSeance, LT_heureDebut, LT_heureFin);
         //List<Seance> listSeance = (List<Seance>) (session.getAttribute("listSeance"));
+        List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
+        //List<Seance> listeSeance = new ArrayList<Seance>();
+        listSeance.add(newSeance);
 
-        List<Seance> listeSeance = new ArrayList<Seance>();
-        listeSeance.add(newSeance);
-
-        HttpSession session = request.getSession();
-        session.setAttribute("listeSeance", listeSeance);
+        getServletContext().setAttribute("listSeance", listSeance);
 
         this.getServletContext().getRequestDispatcher( "/seance.jsp" ).forward( request, response );
 

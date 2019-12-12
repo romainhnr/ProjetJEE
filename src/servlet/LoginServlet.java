@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
+import javax.servlet.ServletConfig;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -23,11 +24,9 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        Seance seance1 = new Seance(LocalDate.now(), LocalTime.now(), LocalTime.now());
-        Seance seance2 = new Seance(LocalDate.of(2020, 01, 01), LocalTime.of(15, 05), LocalTime.of(16, 05));
+        Seance seanceTest = new Seance(LocalDate.of(2020, 01, 01), LocalTime.of(15, 05), LocalTime.of(16, 05));
         List<Seance> listSeance = new ArrayList<>();
-        listSeance.add(seance1);
-        listSeance.add(seance2);
+        listSeance.add(seanceTest);
 
 
         if (login.equals("admin") && (password.equals("root")))
@@ -35,7 +34,8 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
             session.setAttribute("user", user1);
-            session.setAttribute("listSeance", listSeance);
+            getServletContext().setAttribute("listSeance", listSeance);
+            //session.setAttribute("listeSeance", listSeance);
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
@@ -43,7 +43,9 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user2 = new User("toto", "root", "toto", User.Role.USER);
             session.setAttribute("user", user2);
-            session.setAttribute("listSeance", listSeance);
+            //session.setAttribute("listeSeance", listSeance);
+            getServletContext().setAttribute("listSeance", listSeance);
+
             Jeux jeux1 = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
             Jeux jeux2 = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
             user2.listeJeux.add(jeux1);

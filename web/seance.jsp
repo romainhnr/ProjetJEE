@@ -15,10 +15,11 @@
         if (currentUser.getRole() == User.Role.ADMIN) {
             out.println("<a href='formulaireSeance.jsp'>Créer une séance</a>");
         }
-        List<Seance> listeSeance = (List<Seance>) (session.getAttribute("listeSeance"));
+        List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
 
-        if(listeSeance != null) {
-            for (Seance seance : listeSeance) {
+
+        if(listSeance != null) {
+            for (Seance seance : listSeance) {
                 out.println("<h2> Séance </h2>");
                 out.println("<h3> Date : " + seance.date + "</h2>");
                 out.println("<h3> Horaire de début : " + seance.horaireDebut + "</h3>");
