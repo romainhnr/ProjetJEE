@@ -18,11 +18,15 @@
     if(currentUser != null) { %>
     <div class="test">
         <form id="formJeux" class="formJeux">
+            <label for="thème">Thème : </label></br>
+            <select name="choixTheme" id="thème">
+                <option value="roleplay">Roleplay</option>
+                <option value="jeu plateau">Jeu plateau</option>
+                <option value="jeu société">Jeu société</option>
+            </select>
+            </br></br>
             <label for="titre">Titre du jeux : </label></br>
             <input type="text" id="titre">
-            </br></br>
-            <label for="thème">Thème : </label></br>
-            <input type="text" id="thème">
             </br></br>
             <label for="duree">Durée : </label></br>
             <input type="number" id="duree">

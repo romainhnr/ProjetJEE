@@ -11,11 +11,11 @@
     <%  User currentUser = ((User)(session.getAttribute("user"))); %>
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
-    <nav>
+    <nav class="nav">
         <%
             if(currentUser == null){
-                out.println("<h1>Vous n'êtes pas connecté</h1>");
-                out.println("<a href ='login.jsp'> Connectez-vous </a>");
+                out.println("<div class='errorLog'> <h1>Vous n'êtes pas connecté</h1> </div>");
+                out.println("<div class='errorLog'> <a href ='login.jsp'> Connectez-vous </a> </div>");
             }
             else {
             %>

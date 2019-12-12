@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Creation de Séance</title>
-    <link rel="stylesheet" href="css/addJeux.css">
+    <link rel="stylesheet" href="css/addSeance.css">
 </head>
 <body>
 <%
