@@ -14,7 +14,7 @@
 
         if(currentUser.getJeux().isEmpty()){
             out.println("<h2>Vous n'avez pas encore ajouté de jeu à votre profil</h2>");
-            out.println("<a href='formulaireAjoutJeux.jsp'> Ajouter un jeu </a>");
+            out.println("<a href='addJeux.jsp'> Ajouter un jeu </a>");
 
         }
         else {
@@ -29,7 +29,7 @@
                 out.println("<h3> Nb. joueur max. : " + jeux.nbJoueurMax + "</h3>");
 
             }
-            out.println("<a href='formulaireAjoutJeux.jsp'> Ajouter un nouveau jeu </a>");
+            out.println("<a href='addJeux.jsp'> Ajouter un nouveau jeu </a>");
         }
     }
 

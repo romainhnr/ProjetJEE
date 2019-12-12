@@ -24,6 +24,13 @@ if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
         <input type="time" id="heureFin" name="heureFin">
         </br></br>
         <input type="submit" value="Créer la séance">
+        <% if((request.getAttribute("error_message_seance")) != null)
+        {
+            String error_message = (String) request.getAttribute("error_message_seance");
+            out.println("<p> " + error_message + "</p>");
+        }
+
+        %>
     </form>
 <%
 }

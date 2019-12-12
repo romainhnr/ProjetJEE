@@ -22,10 +22,10 @@
                 </br></br>
                 <input type="submit" value="Envoyer" />
 
-            <% if((request.getAttribute("message")) != null)
+            <% if((request.getAttribute("error_message_login")) != null)
             {
-                String error_message = (String) request.getAttribute("message");
-                out.println(error_message);
+                String error_message = (String) request.getAttribute("error_message_login");
+                out.println("<p> " + error_message + "</p>");
             }
 
             %>

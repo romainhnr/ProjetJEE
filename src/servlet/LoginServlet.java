@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet {
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
             session.setAttribute("user", user1);
             getServletContext().setAttribute("listSeance", listSeance);
-            //session.setAttribute("listeSeance", listSeance);
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
@@ -43,7 +42,6 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             User user2 = new User("toto", "root", "toto", User.Role.USER);
             session.setAttribute("user", user2);
-            //session.setAttribute("listeSeance", listSeance);
             getServletContext().setAttribute("listSeance", listSeance);
 
             Jeux jeux1 = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
@@ -52,12 +50,11 @@ public class LoginServlet extends HttpServlet {
             user2.listeJeux.add(jeux2);
             session.setAttribute("listMessages", user2.listeMessages);
 
-
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else{
             String error_message = "Login et/ou mot de passe incorrect !";
-            request.setAttribute("message", error_message);
+            request.setAttribute("error_message_login", error_message);
             this.getServletContext().getRequestDispatcher( "/login.jsp" ).forward( request, response );
         }
 
