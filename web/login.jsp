@@ -9,29 +9,27 @@
 <html>
 <head>
     <title>Connexion</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <form action="login" method="post">
-        <p>
-            <label>Login</label>
-            <input type="text" name="login" placeholder="login"  id="inputLogin"/>
+    <div class="login">
+        <form action="login" method="post">
+                <label for="inputLogin">Login :</label></br>
+                <input type="text" name="login" placeholder="login"  id="inputLogin" class="test "/>
+                </br></br>
+                <label for="inputPassword">Mot de passe: </label></br>
+                <input type="password" name="password" placeholder="mot de passe" id="inputPassword"/>
+                </br></br>
+                <input type="submit" value="Envoyer" />
 
-            <br />
-            <label>Mot de passe</label>
-            <input type="password" name="password" placeholder="mot de passe" id="inputPassword"/>
+            <% if((request.getAttribute("message")) != null)
+            {
+                String error_message = (String) request.getAttribute("message");
+                out.println(error_message);
+            }
 
-
-            <br />
-            <input type="submit" value="Envoyer" />
-        </p>
-
-        <% if((request.getAttribute("message")) != null)
-        {
-            String error_message = (String) request.getAttribute("message");
-            out.println(error_message);
-        }
-
-        %>
-    </form>
+            %>
+        </form>
+    </div>
 </body>
 </html>

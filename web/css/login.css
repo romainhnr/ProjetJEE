@@ -1,0 +1,10 @@
+.login {
+    position: fixed;
+    text-align: center;
+    margin-top: 32vh;
+    border: thick double #32a1ce;
+    border-radius: 25% 10%;
+    width: 200px;
+    padding-top: 10px;
+    left: 42vw;
+}
