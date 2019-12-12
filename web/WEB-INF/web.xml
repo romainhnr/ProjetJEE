@@ -30,6 +30,15 @@
         <url-pattern>/messagerie</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SeanceServlet</servlet-name>
+        <servlet-class>servlet.SeanceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeanceServlet</servlet-name>
+        <url-pattern>/addServlet</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>

@@ -15,20 +15,26 @@
         if (currentUser.getRole() == User.Role.ADMIN) {
             out.println("<a href='formulaireSeance.jsp'>Créer une séance</a>");
         }
-        List<Seance> listSeance = (List<Seance>) (session.getAttribute("listSeance"));
+        List<Seance> listeSeance = (List<Seance>) (session.getAttribute("listeSeance"));
 
-        for (Seance seance : listSeance) {
-            out.println("<h2> Séance </h2>");
-            out.println("<h3> Date : " + seance.date + "</h2>");
-            out.println("<h3> Horaire de début : " + seance.horaireDebut + "</h3>");
-            out.println("<h3> Horaire de fin : " + seance.horaireFin + "</h3>");
-            out.println("<a href='#'>S'inscrire de manière certaine</a>");
-            out.println("<a href='#'>S'inscrire de manière incertaine</a>");
-            out.println("<a href='#'>Voir la liste des inscrits</a>");
-            if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
-                out.println("<a href='#'>Modifier la séance</a>");
-                out.println("<a href='#'>Supprimer la séance</a>");
+        if(listeSeance != null) {
+            for (Seance seance : listeSeance) {
+                out.println("<h2> Séance </h2>");
+                out.println("<h3> Date : " + seance.date + "</h2>");
+                out.println("<h3> Horaire de début : " + seance.horaireDebut + "</h3>");
+                out.println("<h3> Horaire de fin : " + seance.horaireFin + "</h3>");
+                out.println("<a href='#'>S'inscrire de manière certaine</a>");
+                out.println("<a href='#'>S'inscrire de manière incertaine</a>");
+                out.println("<a href='#'>Voir la liste des inscrits</a>");
+                if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
+                    out.println("<a href='#'>Modifier la séance</a>");
+                    out.println("<a href='#'>Supprimer la séance</a>");
+                }
+
             }
+        }
+        else{
+            out.println("<h2> Aucune séance n'est encore créée </h2>");
 
         }
     }
