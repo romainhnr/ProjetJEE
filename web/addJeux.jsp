@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Ajout de Jeux</title>
-    <link rel="stylesheet" href="css/formJeux.css">
+    <link rel="stylesheet" href="css/addJeux.css">
 </head>
 <body>
 <%

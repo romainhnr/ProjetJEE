@@ -25,7 +25,7 @@
             <% if((request.getAttribute("error_message_login")) != null)
             {
                 String error_message = (String) request.getAttribute("error_message_login");
-                out.println("<p> " + error_message + "</p>");
+                out.println("<p class='errorMsg'> " + error_message + "</p>");
             }
 
             %>

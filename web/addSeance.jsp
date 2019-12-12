@@ -7,6 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
+<html>
+<head>
+    <title>Creation de Séance</title>
+    <link rel="stylesheet" href="css/addJeux.css">
+</head>
 <body>
 <%
 if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
@@ -24,10 +29,11 @@ if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
         <input type="time" id="heureFin" name="heureFin">
         </br></br>
         <input type="submit" value="Créer la séance">
+
         <% if((request.getAttribute("error_message_seance")) != null)
         {
             String error_message = (String) request.getAttribute("error_message_seance");
-            out.println("<p> " + error_message + "</p>");
+            out.println("<p class='errorMsg'> " + error_message + "</p>");
         }
 
         %>
