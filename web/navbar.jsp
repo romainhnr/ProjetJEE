@@ -11,6 +11,7 @@
     <%  User currentUser = ((User)(session.getAttribute("user"))); %>
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/addJeux.css">
     <nav class="nav">
         <%
             if(currentUser == null){

@@ -7,12 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
-
-<html>
-<head>
-    <title>Ajout de Jeux</title>
-    <link rel="stylesheet" href="css/addJeux.css">
-</head>
 <body>
 <%
     if(currentUser != null) { %>
@@ -43,9 +37,6 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <% }
-    else { %>
-        <p align="center"> Vous devez vous connectez ! </p>
     <% } %>
 
 

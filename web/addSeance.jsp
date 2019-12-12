@@ -7,11 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
-<html>
-<head>
-    <title>Creation de Séance</title>
-    <link rel="stylesheet" href="css/addSeance.css">
-</head>
 <body>
 <%
 if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
