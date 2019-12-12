@@ -13,7 +13,7 @@
 <%
     if(currentUser != null) {
         if (currentUser.getRole() == User.Role.ADMIN) {
-            out.println("<a href='#'>Créer une séance</a>");
+            out.println("<a href='formulaireSeance.jsp'>Créer une séance</a>");
         }
         List<Seance> listSeance = (List<Seance>) (session.getAttribute("listSeance"));
 
