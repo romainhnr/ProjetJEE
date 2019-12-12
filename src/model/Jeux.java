@@ -10,7 +10,7 @@ public class Jeux {
     public String titre;
     public String description;
     public Theme theme;
-    public String duree;
+    public Integer duree;
     public Integer nbJoueurMin;
     public Integer nbJoueurMax;
 
@@ -25,7 +25,14 @@ public class Jeux {
     /**
      * Default constructor
      */
-    public Jeux() {
+    public Jeux(String titre, String description, Theme theme, Integer duree, Integer nbJoueurMin, Integer nbJoueurMax) {
+        this.idJeux = UUID.randomUUID();
+        this.titre = titre;
+        this.description = description;
+        this.theme = theme;
+        this.duree = duree;
+        this.nbJoueurMin = nbJoueurMin;
+        this.nbJoueurMax = nbJoueurMax;
     }
 
 

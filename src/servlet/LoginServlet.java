@@ -1,5 +1,6 @@
 package servlet;
 
+import model.Jeux;
 import model.Seance;
 import model.User;
 
@@ -43,6 +44,7 @@ public class LoginServlet extends HttpServlet {
             User user2 = new User("toto", "root", "toto", User.Role.USER);
             session.setAttribute("user", user2);
             session.setAttribute("listSeance", listSeance);
+
             this.getServletContext().getRequestDispatcher( "/navbar.jsp" ).forward( request, response );
         }
         else{

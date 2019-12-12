@@ -14,27 +14,33 @@
         <div class="logo">
             <%
             if(currentUser == null){
+                out.println("<h1>Vous n'êtes pas connecté</h1>");
                 out.println("<a href ='login.jsp'> Connectez-vous </a>");
             }
 
-            else if(currentUser.getRole() == User.Role.ADMIN){
+            else{
+                if(currentUser.getRole() == User.Role.ADMIN){
             out.println("<h1> Bienvenue Admin " + currentUser.getNom() + "</h1>");
             }
-            else{
+                else{
                 out.println("<h1> Bienvenue " + currentUser.getNom() + "</h1>");
-                }
+            }
+
             %>
             <div class="links">
                 <ul>
                     <li><a href="seance.jsp">Séance</a></li>
                     <li><a href="#">Messagerie</a></li>
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="profil.jsp">Profil</a></li>
                     <li><a href="logout">Déconnexion</a></li>
-                    <% if(currentUser.getRole() == User.Role.ADMIN) { %>
+                    <% if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) { %>
                     <li> <a href='#'>Gestion Adherents</a> </li>
                     <% } %>
                 </ul>
             </div>
+            <%
+                    }
+            %>
 
     </nav>
 </head>

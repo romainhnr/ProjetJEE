@@ -11,7 +11,7 @@ public class User {
     private String password;
     public String nom;
     private Role role;
-    public List<Jeux> listeJeux;
+    public ArrayList<Jeux> listeJeux;
 
     /**
      Enumération TypeInscription comportant : CERTAIN ou INCERTAIN concernant l'inscription à une séance *
@@ -41,6 +41,9 @@ public class User {
         return nom;
     }
 
+    public ArrayList<Jeux> getJeux() {
+        return listeJeux;
+    }
     /**
      * Default constructor
      */
@@ -50,7 +53,7 @@ public class User {
         this.password = password;
         this.nom = nom;
         this.role = role;
-        this.listeJeux = null;
+        this.listeJeux = new ArrayList<Jeux>();
         this.typeInscription = null;
         this.nbAdherentMinInscription = null;
     }
