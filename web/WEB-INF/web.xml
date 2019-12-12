@@ -36,7 +36,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SeanceServlet</servlet-name>
-        <url-pattern>/addServlet</url-pattern>
+        <url-pattern>/seanceServlet</url-pattern>
     </servlet-mapping>
 
 

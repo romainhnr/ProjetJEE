@@ -29,14 +29,20 @@
                 out.println("<a href='#'>Voir la liste des inscrits</a>");
                 if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
                     out.println("<a href='#'>Modifier la séance</a>");
-                    out.println("<a href='#'>Supprimer la séance</a>");
+                    out.println("<a href='seanceServlet?id=" + seance.getIdSeance() + "'>Supprimer la séance</a>");
                 }
 
             }
         }
-        else{
-            out.println("<h2> Aucune séance n'est encore créée </h2>");
+        if(listSeance == null || listSeance.isEmpty()){
+            out.println("<h2> Aucune séance n'est présente </h2>");
 
+        }
+
+        if((request.getAttribute("message_seance")) != null)
+        {
+            String message_seance = (String) request.getAttribute("message_seance");
+            out.println("<p> " + message_seance + "</p>");
         }
     }
 %>

@@ -23,7 +23,21 @@ public class Seance {
         this.horaireFin= horaireFin;
 
     }
-
+    public UUID getIdSeance() {
+        return idSeance;
+    }
+/*
+    public Seance getSeanceParId(String id, List<Seance> seances) {
+        Seance seance = null;
+        for (Seance s : seances) {
+            if (s.getIdSeance().equals(id)) {
+                seance = s;
+                break;
+            }
+        }
+        return seance;
+    }
+*/
 
     /**
      * @param idUser
@@ -47,3 +61,4 @@ public class Seance {
     }
 
 }
+

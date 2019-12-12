@@ -12,7 +12,7 @@
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/addJeux.css">
-    <link rel="stylesheet" href="css/addSeance.css.css">
+    <link rel="stylesheet" href="css/addSeance.css">
     <nav class="nav">
         <%
             if(currentUser == null){
