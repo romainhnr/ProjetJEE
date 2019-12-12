@@ -23,23 +23,23 @@
             %>
               <div class="menu">
                 <ul>
-                  <li><a href="seance.jsp">Seance</a></li>
+                  <li><a href="seance.jsp">Séance</a></li>
                   <li><a href="#">Messagerie</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li> <a href='#'>Gestion Adherents</a> </li>
+                  <li><a href="#">Profil</a></li>
+                  <li> <a href='#'>Gestion Adhérents</a> </li>
                   <li><a href="logout">Déconnexion</a></li>
                 </ul>
               </div>
             <%
           }
           else{
-            out.println("<h1> Bienvenue" + currentUser.getNom() + "</h1>");
+            out.println("<h1> Bienvenue " + currentUser.getNom() + "</h1>");
             %>
               <div class="menu">
                 <ul>
-                  <li><a href="seance.jsp">Seance</a></li>
+                  <li><a href="seance.jsp">Séance</a></li>
                   <li><a href="#">Messagerie</a></li>
-                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Profil</a></li>
                   <li><a href="logout">Déconnexion</a></li>
                 </ul>
               </div>

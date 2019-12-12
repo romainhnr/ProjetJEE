@@ -11,15 +11,23 @@
 <body>
 
 <%
+    if(currentUser.getRole() == User.Role.ADMIN) {
+        out.println("<a href='#'>Créer une séance</a>");
+    }
     List<Seance> listSeance = (List<Seance>) (session.getAttribute("listSeance"));
 
     for (Seance seance : listSeance) {
-        out.println("<h1> Seance </h1>");
+        out.println("<h1> Séance </h1>");
         out.println("<h2> Date : " + seance.date + "</h2>");
         out.println("<h2> Horaire de début : " + seance.horaireDebut + "</h2>");
         out.println("<h2> Horaire de fin : " + seance.horaireFin + "</h2>");
-
-
+        out.println("<a href='#'>S'inscrire de manière certaine</a>");
+        out.println("<a href='#'>S'inscrire de manière incertaine</a>");
+        out.println("<a href='#'>Voir la liste des inscrits</a>");
+        if(currentUser.getRole() == User.Role.ADMIN) {
+            out.println("<a href='#'>Modifier la séance</a>");
+            out.println("<a href='#'>Supprimer la séance</a>");
+        }
 
     }
 %>
