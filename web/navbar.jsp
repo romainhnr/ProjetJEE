@@ -26,9 +26,9 @@
             %>
             <div class="links">
                 <ul>
-                    <li><a href="seance.jsp">Seance</a></li>
+                    <li><a href="seance.jsp">Séance</a></li>
                     <li><a href="#">Messagerie</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Profil</a></li>
                     <li><a href="logout">Déconnexion</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
                     <li> <a href='#'>Gestion Adherents</a> </li>
