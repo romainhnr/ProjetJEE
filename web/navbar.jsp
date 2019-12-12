@@ -27,7 +27,7 @@
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
                     <li class="gestion"> <a href='#'>Gestion Adherents</a> </li>
                     <% } %>
-                    <li><a href="logout">Déconnexion</a></li>
+                    <li class="logout"><a href="logout">Déconnexion</a></li>
                 </ul>
             </div>
             <%
