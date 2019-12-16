@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(name = "SeanceServlet")
-public class SeanceServlet extends HttpServlet {
+@WebServlet(name = "SeanceAdd_RemoveServlet")
+public class SeanceAdd_RemoveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // création séance
         String dateSeance = request.getParameter("dateSeance");
@@ -35,7 +35,7 @@ public class SeanceServlet extends HttpServlet {
         LocalTime LT_heureFin = LocalTime.parse(heureFin);
 
         if(LT_heureDebut.isAfter(LT_heureFin) || LT_heureDebut.equals(LT_heureFin)){
-            String error_message_seance_creation = "L'heure de début doit être ni égale ni inférieure à l'heure de fin";
+            String error_message_seance_creation = "L'heure de début doit être ni égale ni supérieure à l'heure de fin";
             request.setAttribute("message_seance", error_message_seance_creation);
             this.getServletContext().getRequestDispatcher("/addSeance.jsp").forward(request, response);
         }

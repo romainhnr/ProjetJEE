@@ -15,10 +15,18 @@
         if (currentUser.getRole() == User.Role.ADMIN) {
             out.println("<a href='addSeance.jsp'>Créer une séance</a>");
         }
+        if((request.getAttribute("message_seance")) != null)
+        {
+            String message_seance = (String) request.getAttribute("message_seance");
+            out.println("<p> " + message_seance + "</p>");
+        }
+
         List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
 
-
-        if(listSeance != null) {
+        if(listSeance == null || listSeance.isEmpty()){
+            out.println("<h2> Aucune séance n'est présente </h2>");
+        }
+        else {
             for (Seance seance : listSeance) {
                 out.println("<h2> Séance </h2>");
                 out.println("<h3> Date : " + seance.date + "</h2>");
@@ -28,22 +36,14 @@
                 out.println("<a href='#'>S'inscrire de manière incertaine</a>");
                 out.println("<a href='#'>Voir la liste des inscrits</a>");
                 if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
-                    out.println("<a href='#'>Modifier la séance</a>");
-                    out.println("<a href='seanceServlet?id=" + seance.getIdSeance() + "'>Supprimer la séance</a>");
+                    out.println("<a href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
+                    out.println("<a href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a>");
                 }
 
             }
         }
-        if(listSeance == null || listSeance.isEmpty()){
-            out.println("<h2> Aucune séance n'est présente </h2>");
 
-        }
 
-        if((request.getAttribute("message_seance")) != null)
-        {
-            String message_seance = (String) request.getAttribute("message_seance");
-            out.println("<p> " + message_seance + "</p>");
-        }
     }
 %>
 

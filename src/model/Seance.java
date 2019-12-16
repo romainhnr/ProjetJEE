@@ -26,6 +26,28 @@ public class Seance {
     public UUID getIdSeance() {
         return idSeance;
     }
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+    public LocalTime getHoraireDebut() {
+        return horaireDebut;
+    }
+
+    public void setHoraireDebut(LocalTime horaireDebut) {
+        this.horaireDebut = horaireDebut;
+    }
+
+    public LocalTime getHoraireFin() {
+        return horaireFin;
+    }
+
+    public void setHoraireFin(LocalTime horaireFin) {
+        this.horaireFin = horaireFin;
+    }
 /*
     public Seance getSeanceParId(String id, List<Seance> seances) {
         Seance seance = null;

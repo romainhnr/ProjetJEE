@@ -19,7 +19,9 @@ public class Jeux {
         AMBIANCE,
         STRATEGIE;
 
-
+    }
+    public UUID getIdJeux() {
+        return idJeux;
     }
 
     /**

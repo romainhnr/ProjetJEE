@@ -19,6 +19,7 @@ import javax.servlet.ServletConfig;
 
 @WebServlet(name = "LoginServlet")
 public class LoginServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String login = request.getParameter("login");
@@ -28,26 +29,32 @@ public class LoginServlet extends HttpServlet {
         List<Seance> listSeance = new ArrayList<>();
         listSeance.add(seanceTest);
 
-
         if (login.equals("admin") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
-            session.setAttribute("user", user1);
+            //session.setAttribute("user", user1);
+            getServletContext().setAttribute("user", user1);
             getServletContext().setAttribute("listSeance", listSeance);
+
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
         else if(login.equals("toto") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
             User user2 = new User("toto", "root", "toto", User.Role.USER);
-            session.setAttribute("user", user2);
+            //session.setAttribute("user", user2);
+
+
             getServletContext().setAttribute("listSeance", listSeance);
 
-            Jeux jeux1 = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
-            Jeux jeux2 = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
-            user2.listeJeux.add(jeux1);
-            user2.listeJeux.add(jeux2);
+            Jeux jeux1test = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
+            Jeux jeux2test = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
+            user2.listeJeux.add(jeux1test);
+            user2.listeJeux.add(jeux2test);
+
+            getServletContext().setAttribute("user", user2);
+
             session.setAttribute("listMessages", user2.listeMessages);
 
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );

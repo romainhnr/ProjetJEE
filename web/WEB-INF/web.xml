@@ -31,12 +31,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>SeanceServlet</servlet-name>
-        <servlet-class>servlet.SeanceServlet</servlet-class>
+        <servlet-name>SeanceAdd_RemoveServlet</servlet-name>
+        <servlet-class>servlet.SeanceAdd_RemoveServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SeanceServlet</servlet-name>
-        <url-pattern>/seanceServlet</url-pattern>
+        <servlet-name>SeanceAdd_RemoveServlet</servlet-name>
+        <url-pattern>/add_remove_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SeanceModifyServlet</servlet-name>
+        <servlet-class>servlet.SeanceModifyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeanceModifyServlet</servlet-name>
+        <url-pattern>/modify_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>JeuxServlet</servlet-name>
+        <servlet-class>servlet.JeuxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JeuxServlet</servlet-name>
+        <url-pattern>/jeuxServlet</url-pattern>
     </servlet-mapping>
 
 

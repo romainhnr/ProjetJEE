@@ -13,7 +13,7 @@ if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
 
 %>
     <h2>Formulaire de création de séances</h2> </br>
-    <form action="seanceServlet" method="post">
+    <form action="add_remove_seance" method="post">
         <label for="dateSeance">Date de la séance :</label>
         <input type="date" id="dateSeance" name="dateSeance">
         </br></br>
@@ -24,15 +24,14 @@ if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
         <input type="time" id="heureFin" name="heureFin">
         </br></br>
         <input type="submit" value="Créer la séance">
-
-        <% if((request.getAttribute("message_seance")) != null)
-        {
-            String error_message = (String) request.getAttribute("message_seance");
-            out.println("<p class='errorMsg'> " + error_message + "</p>");
-        }
-
-        %>
     </form>
+    <% if((request.getAttribute("message_seance")) != null)
+    {
+        String error_message = (String) request.getAttribute("message_seance");
+        out.println("<p class='errorMsg'> " + error_message + "</p>");
+    }
+
+    %>
 <%
 }
 %>
