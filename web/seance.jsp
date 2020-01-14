@@ -13,7 +13,7 @@
 <%
     if(currentUser != null) {
         if (currentUser.getRole() == User.Role.ADMIN) {
-            out.println("<a href='seanceAdd.jsp'>Créer une séance</a>");
+            out.println("<a class='button' href='seanceAdd.jsp'>Créer une séance</a>");
         }
         if((request.getAttribute("message_seance")) != null)
         {
@@ -28,16 +28,16 @@
         }
         else {
             for (Seance seance : listSeance) {
-                out.println("<h2> Séance </h2>");
+                out.println("<div class='divSeance'> <h2> Séance </h2>");
                 out.println("<h3> Date : " + seance.getDate() + "</h2>");
                 out.println("<h3> Horaire de début : " + seance.getHoraireDebut() + "</h3>");
                 out.println("<h3> Horaire de fin : " + seance.getHoraireFin() + "</h3>");
-                out.println("<a href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
-                out.println("<a href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
-                out.println("<a href='details_seance?id=" + seance.getIdSeance() + "'>Voir le détail de la séance</a>");
+                out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
+                out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
+                out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir le détail de la séance</a>");
                 if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
-                    out.println("<a href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
-                    out.println("<a href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a>");
+                    out.println("<a class='buttonImportant' href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
+                    out.println("<a class='buttonImportant' href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a></div>");
                 }
 
             }

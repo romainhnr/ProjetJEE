@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/addJeux.css">
     <link rel="stylesheet" href="css/addSeance.css">
     <link rel="stylesheet" href="css/pageSeances.css">
+    <link rel="stylesheet" href="css/inscriptionSeance.css">
     <nav class="nav">
         <%
             if(currentUser == null){
