@@ -28,7 +28,7 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
         if (dateSeance == null || dateSeance.isBlank() || dateSeance.isEmpty() || heureDebut == null || heureDebut.isBlank() || heureDebut.isEmpty() || heureFin == null || heureFin.isBlank() || heureFin.isEmpty()) {
             String error_message_seance_creation = "Les champs doivent être remplis";
             request.setAttribute("message_seance", error_message_seance_creation);
-            this.getServletContext().getRequestDispatcher("/addSeance.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/seanceAdd.jsp").forward(request, response);
         }
         LocalDate LD_dateSeance = LocalDate.parse(dateSeance);
         LocalTime LT_heureDebut = LocalTime.parse(heureDebut);
@@ -37,12 +37,12 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
         if(LT_heureDebut.isAfter(LT_heureFin) || LT_heureDebut.equals(LT_heureFin)){
             String error_message_seance_creation = "L'heure de début doit être ni égale ni supérieure à l'heure de fin";
             request.setAttribute("message_seance", error_message_seance_creation);
-            this.getServletContext().getRequestDispatcher("/addSeance.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/seanceAdd.jsp").forward(request, response);
         }
         else if(LD_dateSeance.isBefore(LocalDate.now())){
             String error_message_seance_creation = "La date de la séance doit se situer après la date actuelle";
             request.setAttribute("message_seance", error_message_seance_creation);
-            this.getServletContext().getRequestDispatcher("/addSeance.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/seanceAdd.jsp").forward(request, response);
         }
         else {
             Seance newSeance = new Seance(LD_dateSeance, LT_heureDebut, LT_heureFin);
@@ -61,15 +61,14 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
         // suppression séance
         String id = request.getParameter("id");
         List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
-        Seance seance = null;
+        //Seance seance = null;
         UUID UUID_id = UUID.fromString(id);
         for (Seance s : listSeance) {
             if (s.getIdSeance().equals(UUID_id)) {
-                seance = s;
                 listSeance.remove(s);
                 getServletContext().setAttribute("listSeance", listSeance);
 
-                String validation_message_seance_delete = "La séance datant du " + s.date + " a bien été supprimée";
+                String validation_message_seance_delete = "La séance datant du " + s.getDate() + " a bien été supprimée";
                 request.setAttribute("message_seance", validation_message_seance_delete);
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);

@@ -49,6 +49,33 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>SeanceRegistrationServlet</servlet-name>
+        <servlet-class>servlet.SeanceRegistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeanceRegistrationServlet</servlet-name>
+        <url-pattern>/registration_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SeanceUnregistrationServlet</servlet-name>
+        <servlet-class>servlet.SeanceUnregistrationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeanceUnregistrationServlet</servlet-name>
+        <url-pattern>/unregistration_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SeanceDetailsServlet</servlet-name>
+        <servlet-class>servlet.SeanceDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SeanceDetailsServlet</servlet-name>
+        <url-pattern>/details_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>JeuxServlet</servlet-name>
         <servlet-class>servlet.JeuxServlet</servlet-class>
     </servlet>

@@ -7,12 +7,12 @@ import java.util.*;
 public class Jeux {
 
     private UUID idJeux;
-    public String titre;
-    public String description;
-    public Theme theme;
-    public Integer duree;
-    public Integer nbJoueurMin;
-    public Integer nbJoueurMax;
+    private String titre;
+    private String description;
+    private Theme theme;
+    private Integer duree;
+    private Integer nbJoueurMin;
+    private Integer nbJoueurMax;
 
     public enum Theme{
         ROLE,
@@ -20,9 +20,29 @@ public class Jeux {
         STRATEGIE;
 
     }
+
     public UUID getIdJeux() {
         return idJeux;
     }
+    public String getTitre() {
+        return titre;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public Theme getTheme() {
+        return theme;
+    }
+    public Integer getDuree() {
+        return duree;
+    }
+    public Integer getNbJoueurMin() {
+        return nbJoueurMin;
+    }
+    public Integer getNbJoueurMax() {
+        return nbJoueurMax;
+    }
+
 
     /**
      * Default constructor

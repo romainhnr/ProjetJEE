@@ -18,7 +18,7 @@
 
         if(currentUser.getJeux().isEmpty()){
             out.println("<h2>Vous n'avez pas encore ajouté de jeu à votre profil</h2>");
-            out.println("<a href='addJeux.jsp'> Ajouter un jeu </a>");
+            out.println("<a href='jeuxAdd.jsp'> Ajouter un jeu </a>");
 
         }
         if((request.getAttribute("message_jeu")) != null)
@@ -27,16 +27,16 @@
             out.println("<p> " + message_jeu + "</p>");
         }
         if (!(currentUser.getJeux().isEmpty())) {
-            out.println("<a href='addJeux.jsp'> Ajouter un nouveau jeu </a>");
+            out.println("<a href='jeuxAdd.jsp'> Ajouter un nouveau jeu </a>");
             out.println("<h2>Voici vos jeux : </h2>");
             for (Jeux jeux : currentUser.getJeux()) {
                 out.println("<h2> Jeu </h3>");
-                out.println("<h3> Titre : " + jeux.titre + "</h3>");
-                out.println("<h3> Description : " + jeux.description + "</h3>");
-                out.println("<h3> Thème : " + jeux.theme + "</h3>");
-                out.println("<h3> Durée : " + jeux.duree + " min.</h3>");
-                out.println("<h3> Nb. joueur min. : " + jeux.nbJoueurMin + "</h3>");
-                out.println("<h3> Nb. joueur max. : " + jeux.nbJoueurMax + "</h3>");
+                out.println("<h3> Titre : " + jeux.getTitre() + "</h3>");
+                out.println("<h3> Description : " + jeux.getDescription() + "</h3>");
+                out.println("<h3> Thème : " + jeux.getTheme() + "</h3>");
+                out.println("<h3> Durée : " + jeux.getDuree() + " min.</h3>");
+                out.println("<h3> Nb. joueur min. : " + jeux.getNbJoueurMin() + "</h3>");
+                out.println("<h3> Nb. joueur max. : " + jeux.getNbJoueurMax() + "</h3>");
                 out.println("<a href='jeuxServlet?id=" + jeux.getIdJeux() + "'>Supprimer le jeu</a>");
             }
 

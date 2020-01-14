@@ -50,12 +50,12 @@ public class LoginServlet extends HttpServlet {
 
             Jeux jeux1test = new Jeux("Loup garou", "jeux de loup garou", Jeux.Theme.STRATEGIE, 20, 2, 10);
             Jeux jeux2test = new Jeux("Monopoly", "jeux de monopoly", Jeux.Theme.AMBIANCE, 30, 2, 5);
-            user2.listeJeux.add(jeux1test);
-            user2.listeJeux.add(jeux2test);
+            user2.addListeJeux(jeux1test);
+            user2.addListeJeux(jeux2test);
 
             getServletContext().setAttribute("user", user2);
-
-            session.setAttribute("listMessages", user2.listeMessages);
+            session.setAttribute("userS", user2);
+            session.setAttribute("listMessages", user2.getListeMessages());
 
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }

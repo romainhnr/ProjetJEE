@@ -9,42 +9,34 @@ public class User {
     private UUID idUser;
     private String login;
     private String password;
-    public String nom;
+    private String nom;
     private Role role;
-    public ArrayList<Jeux> listeJeux;
-    public ArrayList<Message> listeMessages;
-
-    /**
-     Enumération TypeInscription comportant : CERTAIN ou INCERTAIN concernant l'inscription à une séance *
-     */
-    private TypeInscription typeInscription;
-
+    private ArrayList<Jeux> listeJeux;
+    private ArrayList<Message> listeMessages;
     private Integer nbAdherentMinInscription;
 
     public enum Role {
         USER,
         ADMIN;
     }
-    public enum TypeInscription {
-        CERTAIN,
-        INCERTAIN;
-    }
 
-    public String getLogin() {
-        return login;
-    }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public ArrayList<Jeux> getJeux() {
-        return listeJeux;
-    }
+    public UUID getIdUser() { return idUser; }
+    public String getLogin() { return login; }
+    public void setLogin(String login) { this.login = login; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
+    public ArrayList<Jeux> getJeux() { return listeJeux; }
+    public void addListeJeux(Jeux jeu) { this.listeJeux.add(jeu); }
+    public void removeListeJeux(Jeux jeu) { this.listeJeux.remove(jeu); }
+    public ArrayList<Message> getListeMessages() { return listeMessages; }
+    public void setListeMessages(ArrayList<Message> listeMessages) { this.listeMessages = listeMessages; }
+    public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
+    public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
 
     /**
      * Default constructor
@@ -57,7 +49,6 @@ public class User {
         this.role = role;
         this.listeJeux = new ArrayList<Jeux>();
         this.listeMessages = new ArrayList<Message>();
-        this.typeInscription = null;
         this.nbAdherentMinInscription = null;
     }
 

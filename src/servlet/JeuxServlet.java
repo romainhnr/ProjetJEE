@@ -29,7 +29,7 @@ public class JeuxServlet extends HttpServlet {
         if (titre == null || titre.isBlank() || titre.isEmpty() || description == null || description.isBlank() || description.isEmpty() || duree == null || duree.isBlank() || duree.isEmpty() || nbmin == null || nbmin.isBlank() || nbmin.isEmpty() || nbmax == null || nbmax.isBlank() || nbmax.isEmpty() || choixTheme == null || choixTheme.isBlank() || choixTheme.isEmpty()) {
             String error_message_jeu_creation = "Les champs doivent être remplis";
             request.setAttribute("message_jeu", error_message_jeu_creation);
-            this.getServletContext().getRequestDispatcher("/addJeux.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/jeuxAdd.jsp").forward(request, response);
         }
         String titreJeu = titre;
         String descriptionJeu = description;
@@ -41,12 +41,12 @@ public class JeuxServlet extends HttpServlet {
         if(dureeJeu < 1){
             String error_message_jeux_creation = "La durée doit être supérieure à 1 minute";
             request.setAttribute("message_jeu", error_message_jeux_creation);
-            this.getServletContext().getRequestDispatcher("/addJeux.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/jeuxAdd.jsp").forward(request, response);
         }
         else if(nbminJeu > nbmaxJeu){
             String error_message_jeux_creation = "Le nombre min. doit être inférieur au nombre max.";
             request.setAttribute("message_jeu", error_message_jeux_creation);
-            this.getServletContext().getRequestDispatcher("/addJeux.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/jeuxAdd.jsp").forward(request, response);
         }
         else{
             if (choixTheme.equals("Jeu de role")){
@@ -61,12 +61,12 @@ public class JeuxServlet extends HttpServlet {
             else{
                 String error_message_jeu_creation = "Erreur : choix non trouvé ";
                 request.setAttribute("message_jeu", error_message_jeu_creation);
-                this.getServletContext().getRequestDispatcher("/addJeux.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/jeuxAdd.jsp").forward(request, response);
             }
 
             Jeux newJeux = new Jeux(titreJeu, descriptionJeu, themeJeu, dureeJeu, nbminJeu, nbmaxJeu);
             User current_user = (User)request.getServletContext().getAttribute("user");
-            current_user.listeJeux.add(newJeux);
+            current_user.addListeJeux(newJeux);
 
             getServletContext().setAttribute("user", current_user);
 
@@ -89,10 +89,10 @@ public class JeuxServlet extends HttpServlet {
         for (Jeux j : current_user.getJeux()) {
             if (j.getIdJeux().equals(UUID_id)) {
                 jeu = j;
-                current_user.listeJeux.remove(j);
+                current_user.removeListeJeux(j);
                 getServletContext().setAttribute("user", current_user);
 
-                String validation_message_jeu_delete = "Le jeu se nommant " + j.titre + " a bien été supprimé";
+                String validation_message_jeu_delete = "Le jeu se nommant " + j.getTitre() + " a bien été supprimé";
                 request.setAttribute("message_jeu", validation_message_jeu_delete);
 
                 this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
