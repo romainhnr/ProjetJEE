@@ -34,7 +34,7 @@
             <label for="description">Description : </label></br>
             <textarea id="description" form="formJeux" rows="5" cols="30" name="description">Entrez une description brève du jeu</textarea>
             </br></br>
-            <input type="submit" value="Ajouter le jeu">
+            <input type="submit" class='button' value="Ajouter le jeu">
         </form>
         <% if((request.getAttribute("message_jeu")) != null)
         {

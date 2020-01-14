@@ -15,23 +15,24 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/addJeux.css">
     <link rel="stylesheet" href="css/addSeance.css">
+    <link rel="stylesheet" href="css/pageSeances.css">
     <nav class="nav">
         <%
             if(currentUser == null){
-                out.println("<div class='errorLog'> <h1>Vous n'êtes pas connecté</h1> </div>");
-                out.println("<div class='errorLog'> <a href ='login.jsp'> Connectez-vous </a> </div>");
+                out.println("<div class='errorLog'> <h1>Vous n'êtes pas connecté</h1>");
+                out.println("<a href ='login.jsp' class='button'> Connectez-vous </a> </div>");
             }
             else {
             %>
             <div class="links">
                 <ul class="menu">
-                    <li class="profil"><a href="profil.jsp">Profil</a></li>
-                    <li class="seance"><a href="seance.jsp">Séances</a></li>
-                    <li class="messagerie"><a href="messagerie">Messagerie</a></li>
+                    <li><a href="profil.jsp">Profil</a></li>
+                    <li><a href="seance.jsp">Séances</a></li>
+                    <li><a href="messagerie">Messagerie</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
                     <li class="gestion"> <a href='#'>Gestion Adhérents</a> </li>
                     <% } %>
-                    <li class="logout"><a href="logout">Déconnexion</a></li>
+                    <li><a href="logout">Déconnexion</a></li>
                 </ul>
             </div>
             <%
