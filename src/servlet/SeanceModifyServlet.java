@@ -1,6 +1,8 @@
 package servlet;
 
+import model.Message;
 import model.Seance;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +44,14 @@ public class SeanceModifyServlet extends HttpServlet {
             //List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute("listSeance");
             //listSeance.add(seance_to_modify);
             //getServletContext().setAttribute("listSeance", listSeance);
+
+            //messagerie
+            User currentUser = (User)request.getServletContext().getAttribute("user");
+            Message messageModifySeance = new Message("La séance datant du " + seance_to_modify.getDate() + " a été modifié. Les horaires sont maintenant : " + seance_to_modify.getHoraireDebut() + " à " + seance_to_modify.getHoraireFin() + ".<br/> Si vous voulez annuler votre inscription, <a href='unregistration_seance?id=" + seance_to_modify.getIdSeance() +"'>cliquer-ici</a>. En nous excusant de la gêne occassionée");
+            if(seance_to_modify.getListUserInscritCertain().contains(currentUser) || seance_to_modify.getListUserInscritIncertain().contains(currentUser)){
+                currentUser.addListeMessages(messageModifySeance);
+            }
+            getServletContext().setAttribute("user", currentUser);
 
             String validation_message_seance_modify = "La séance datant du " + seance_to_modify.getDate() + " a bien été modifié";
             request.setAttribute("message_seance", validation_message_seance_modify);

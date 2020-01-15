@@ -11,8 +11,8 @@ public class User {
     private String password;
     private String nom;
     private Role role;
-    private ArrayList<Jeux> listeJeux;
-    private ArrayList<Message> listeMessages;
+    private List<Jeux> listeJeux;
+    private List<Message> listeMessages;
     private Integer nbAdherentMinInscription;
 
     public enum Role {
@@ -20,23 +20,6 @@ public class User {
         ADMIN;
     }
 
-
-    public UUID getIdUser() { return idUser; }
-    public String getLogin() { return login; }
-    public void setLogin(String login) { this.login = login; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
-    public Role getRole() { return role; }
-    public void setRole(Role role) { this.role = role; }
-    public ArrayList<Jeux> getJeux() { return listeJeux; }
-    public void addListeJeux(Jeux jeu) { this.listeJeux.add(jeu); }
-    public void removeListeJeux(Jeux jeu) { this.listeJeux.remove(jeu); }
-    public ArrayList<Message> getListeMessages() { return listeMessages; }
-    public void setListeMessages(ArrayList<Message> listeMessages) { this.listeMessages = listeMessages; }
-    public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
-    public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
 
     /**
      * Default constructor
@@ -51,6 +34,24 @@ public class User {
         this.listeMessages = new ArrayList<Message>();
         this.nbAdherentMinInscription = null;
     }
+
+    public UUID getIdUser() { return idUser; }
+    public String getLogin() { return login; }
+    public void setLogin(String login) { this.login = login; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getNom() { return nom; }
+    public void setNom(String nom) { this.nom = nom; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
+    public List<Jeux> getJeux() { return listeJeux; }
+    public void addListeJeux(Jeux jeu) { this.listeJeux.add(jeu); }
+    public void removeListeJeux(Jeux jeu) { this.listeJeux.remove(jeu); }
+    public List<Message> getListeMessages() { return listeMessages; }
+    public void addListeMessages(Message message) { this.listeMessages.add(message); }
+    public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
+    public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
+
 
     private String generatePassword() {
         // TODO à générer aléatoirement

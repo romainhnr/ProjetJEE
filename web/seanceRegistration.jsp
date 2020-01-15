@@ -16,8 +16,8 @@
         <form id="formSeanceRegister" action="registration_seance" method="post">
             <label for="status">Status : </label><br/>
             <select name="choixStatus" id="status" onchange="test()">
-                <option value="1">Certain</option>
-                <option value="0">Incertain</option>
+                <option value="Certain">Certain</option>
+                <option value="Incertain">Incertain</option>
             </select><br/><br/>
 
             <div id="mlk" style="visibility: hidden">
@@ -36,13 +36,13 @@
     status.options[status.selectedIndex].value;
 
 function test(){
-    if(status === "0"){
+    if(status === "Incertain"){
         document.getElementById("mlk").style.visibility = "hidden";
-        status = "1";
+        status = "Certain";
     }
-    else if(status === "1"){
+    else if(status === "Certain"){
         document.getElementById("mlk").style.visibility = "visible";
-        status = "0";
+        status = "Incertain";
     }
 }
 </script>

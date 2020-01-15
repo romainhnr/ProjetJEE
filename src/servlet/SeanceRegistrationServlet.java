@@ -19,11 +19,11 @@ public class SeanceRegistrationServlet extends HttpServlet {
         Seance seance_to_register = (Seance) request.getServletContext().getAttribute("seance_to_register");
         User currentUser = (User)request.getServletContext().getAttribute("user");
 
-        String choixInscription = request.getParameter("choixInscription");
-        String choixNbMinInscription = request.getParameter("choixNbMinInscription");
+        String choixInscription = request.getParameter("choixStatus");
+        String choixNbMinInscription = request.getParameter("joueurMin");
 
         if (choixInscription == null || choixInscription.isBlank() || choixInscription.isEmpty()) {
-            String error_message_seance_inscription = "Vous devez sélection votre type d'inscription";
+            String error_message_seance_inscription = "Vous devez sélectionner votre type d'inscription";
             request.setAttribute("message_seance", error_message_seance_inscription);
             this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
         }
@@ -31,16 +31,24 @@ public class SeanceRegistrationServlet extends HttpServlet {
         else {
             if (choixInscription.equals("Certain")){
                 seance_to_register.addListUserInscritCertain(currentUser);
+                String validation_message_seance_register = "Vous avez été bien inscrit de manière certaine à la séance datant du " + seance_to_register.getDate();
+                request.setAttribute("message_seance", validation_message_seance_register);
+
+                this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
             else if(choixInscription.equals("Incertain")){
                 if (choixNbMinInscription == null || choixNbMinInscription.isBlank() || choixNbMinInscription.isEmpty()) {
-                    String error_message_seance_inscription = "Vous devez sélection votre nombre minimum d'inscrit à la séance pour passer certain";
+                    String error_message_seance_inscription = "Vous devez sélectionner votre nombre minimum d'inscrit à la séance pour passer certain";
                     request.setAttribute("message_seance", error_message_seance_inscription);
                     this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
                 }
                 else {
                     seance_to_register.addListUserInscritIncertain(currentUser);
                     currentUser.setNbAdherentMinInscription(Integer.parseInt(choixNbMinInscription));
+                    String validation_message_seance_register = "Vous avez été bien inscrit de manière incertaine à la séance datant du " + seance_to_register.getDate();
+                    request.setAttribute("message_seance", validation_message_seance_register);
+
+                    this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
                 }
             }
             else{
@@ -53,10 +61,7 @@ public class SeanceRegistrationServlet extends HttpServlet {
             //listSeance.add(seance_to_modify);
             //getServletContext().setAttribute("listSeance", listSeance);
 
-            String validation_message_seance_register = "Vous avez été bien inscrit à la séance datant du " + seance_to_register.getDate();
-            request.setAttribute("message_seance", validation_message_seance_register);
 
-            this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
         }
     }
 

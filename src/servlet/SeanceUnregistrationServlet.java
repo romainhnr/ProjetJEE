@@ -37,7 +37,7 @@ public class SeanceUnregistrationServlet extends HttpServlet {
                 seance_to_unregister.removeListUserInscritIncertain(currentUser);
             }
             else {
-                String error_message_seance_unregistration = "Erreur : l'utilisateur n'a pas été trouvé";
+                String error_message_seance_unregistration = "Erreur : Vous n'êtes pas inscrit à la séance";
                 request.setAttribute("message_seance", error_message_seance_unregistration);
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
@@ -45,7 +45,7 @@ public class SeanceUnregistrationServlet extends HttpServlet {
                 getServletContext().setAttribute("listSeance", listSeance);
                 getServletContext().setAttribute("user", currentUser);
 
-                String validation_message_seance_registration = "Vous vous êtes bien désinscrit de la séance datant du" + seance_to_unregister.getDate();
+                String validation_message_seance_registration = "Vous vous êtes bien désinscrit de la séance datant du " + seance_to_unregister.getDate();
                 request.setAttribute("message_seance", validation_message_seance_registration);
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
@@ -57,5 +57,8 @@ public class SeanceUnregistrationServlet extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
         }
+        String message_seance = "Vous vous êtes bien désinscrit";
+        request.setAttribute("message_seance", message_seance);
+        this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
     }
 }

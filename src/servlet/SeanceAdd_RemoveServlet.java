@@ -1,6 +1,8 @@
 package servlet;
 
+import model.Message;
 import model.Seance;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,14 +63,21 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
         // suppression séance
         String id = request.getParameter("id");
         List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
-        //Seance seance = null;
         UUID UUID_id = UUID.fromString(id);
-        for (Seance s : listSeance) {
-            if (s.getIdSeance().equals(UUID_id)) {
-                listSeance.remove(s);
+        for (Seance seance_to_delete : listSeance) {
+            if (seance_to_delete.getIdSeance().equals(UUID_id)) {
+                listSeance.remove(seance_to_delete);
                 getServletContext().setAttribute("listSeance", listSeance);
 
-                String validation_message_seance_delete = "La séance datant du " + s.getDate() + " a bien été supprimée";
+                //messagerie
+                User currentUser = (User)request.getServletContext().getAttribute("user");
+                Message messageDeleteSeance = new Message("La séance datant du " + seance_to_delete.getDate() + " a été supprimée.\nVous êtes donc désinscrit de celle-ci. En nous excusant de la gêne occassionée");
+                if(seance_to_delete.getListUserInscritCertain().contains(currentUser) || seance_to_delete.getListUserInscritIncertain().contains(currentUser)){
+                    currentUser.addListeMessages(messageDeleteSeance);
+                }
+                getServletContext().setAttribute("user", currentUser);
+
+                String validation_message_seance_delete = "La séance datant du " + seance_to_delete.getDate() + " a bien été supprimée";
                 request.setAttribute("message_seance", validation_message_seance_delete);
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);

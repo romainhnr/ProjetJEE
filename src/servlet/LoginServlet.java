@@ -1,6 +1,7 @@
 package servlet;
 
 import model.Jeux;
+import model.Message;
 import model.Seance;
 import model.User;
 
@@ -29,11 +30,17 @@ public class LoginServlet extends HttpServlet {
         List<Seance> listSeance = new ArrayList<>();
         listSeance.add(seanceTest);
 
+        Message messageTest = new Message("Test, voici un message d'alerte ! Vous voyez votre message incroyable !");
+        Message messageTest2 = new Message("Squalala");
+
         if (login.equals("admin") && (password.equals("root")))
         {
             HttpSession session = request.getSession();
             User user1 = new User("jean", "root", "jean", User.Role.ADMIN);
-            //session.setAttribute("user", user1);
+
+            user1.addListeMessages(messageTest);
+            user1.addListeMessages(messageTest2);
+
             getServletContext().setAttribute("user", user1);
             getServletContext().setAttribute("listSeance", listSeance);
 
@@ -43,8 +50,6 @@ public class LoginServlet extends HttpServlet {
         {
             HttpSession session = request.getSession();
             User user2 = new User("toto", "root", "toto", User.Role.USER);
-            //session.setAttribute("user", user2);
-
 
             getServletContext().setAttribute("listSeance", listSeance);
 
@@ -53,9 +58,10 @@ public class LoginServlet extends HttpServlet {
             user2.addListeJeux(jeux1test);
             user2.addListeJeux(jeux2test);
 
+            user2.addListeMessages(messageTest);
+            user2.addListeMessages(messageTest2);
+
             getServletContext().setAttribute("user", user2);
-            session.setAttribute("userS", user2);
-            session.setAttribute("listMessages", user2.getListeMessages());
 
             this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( request, response );
         }
