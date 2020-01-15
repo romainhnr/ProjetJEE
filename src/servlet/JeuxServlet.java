@@ -65,10 +65,10 @@ public class JeuxServlet extends HttpServlet {
             }
 
             Jeux newJeux = new Jeux(titreJeu, descriptionJeu, themeJeu, dureeJeu, nbminJeu, nbmaxJeu);
-            User current_user = (User)request.getServletContext().getAttribute("user");
-            current_user.addListeJeux(newJeux);
+            User currentUser = (User)request.getServletContext().getAttribute("currentUser");
+            currentUser.addListeJeux(newJeux);
 
-            getServletContext().setAttribute("user", current_user);
+            getServletContext().setAttribute("currentUser", currentUser);
 
             //String validation_message_seance_creation = "La séance datant du : " + newSeance.date + " a bien été crée";
             //request.setAttribute("message_seance", validation_message_seance_creation);
@@ -83,16 +83,15 @@ public class JeuxServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // suppression jeu
         String id = request.getParameter("id");
-        User current_user = (User)request.getServletContext().getAttribute("user");
-        Jeux jeu = null;
+        User currentUser = (User)request.getServletContext().getAttribute("currentUser");
         UUID UUID_id = UUID.fromString(id);
-        for (Jeux j : current_user.getJeux()) {
-            if (j.getIdJeux().equals(UUID_id)) {
-                jeu = j;
-                current_user.removeListeJeux(j);
-                getServletContext().setAttribute("user", current_user);
 
-                String validation_message_jeu_delete = "Le jeu se nommant " + j.getTitre() + " a bien été supprimé";
+        for (Jeux jeu : currentUser.getJeux()) {
+            if (jeu.getIdJeux().equals(UUID_id)) {
+                currentUser.removeListeJeux(jeu);
+                getServletContext().setAttribute("currentUser", currentUser);
+
+                String validation_message_jeu_delete = "Le jeu se nommant " + jeu.getTitre() + " a bien été supprimé de votre liste";
                 request.setAttribute("message_jeu", validation_message_jeu_delete);
 
                 this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);

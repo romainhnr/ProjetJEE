@@ -14,7 +14,7 @@
     List<Message> listMessages = currentUser.getListeMessages();
 
         if(currentUser != null) {
-            out.println("<h1>Bienvenue sur votre messagerie, " + currentUser.getNom()+"</h1>");
+            out.println("<h1>Bienvenue sur votre messagerie, " + currentUser.getNom()+ "</h1>");
 
         }
         if(listMessages == null || listMessages.isEmpty()){
@@ -23,9 +23,9 @@
         else {
             for (Message message : listMessages) {
                 if(message.getDateTimeMessage().isAfter(LocalDateTime.now().minusDays(10))) {
-                    out.println("<h3> Message </h3>");
-                    out.println("<h4> Date : " + message.getDateTimeMessage().getDayOfMonth() + "/" + message.getDateTimeMessage().getMonthValue() + "/" + message.getDateTimeMessage().getYear() + " - " + message.getDateTimeMessage().getHour() + "h. " + message.getDateTimeMessage().getMinute() + "min. " + message.getDateTimeMessage().getSecond() + "s. </h4>");
-                    out.println("<p> Texte : " + message.getTexteMessage() + "<p>");
+                    out.println("<h3> --- Message --- </h3>");
+                    out.println("<h4> Date : " + message.getDateTimeMessage().getDayOfMonth() + "/" + message.getDateTimeMessage().getMonthValue() + "/" + message.getDateTimeMessage().getYear() + " - " + message.getDateTimeMessage().getHour() + ":" + message.getDateTimeMessage().getMinute() + ":" + message.getDateTimeMessage().getSecond() + " </h4>");
+                    out.println("<p> Texte : " + message.getTexteMessage() + "</p>");
                     out.println("<i> Est lu : " + message.getEstLu() + "</i>");
                     if(!(message.getEstLu())){
                         out.println("<a href='messagerie?id=" + message.getIdMessage() + "'>Marquer comme lu</a>");

@@ -19,7 +19,7 @@
 <% if((request.getAttribute("message_seance")) != null)
 {
     String message_seance = (String) request.getAttribute("message_seance");
-    out.println("<p> " + message_seance + "</p>");
+    out.println("<p class='errorMsg'>" + message_seance + "</p>");
 }
 
 %>

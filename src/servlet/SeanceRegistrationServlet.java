@@ -12,12 +12,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import static servlet.InitServlet.CONTEXT_SEANCES;
+
 @WebServlet(name = "SeanceRegistrationServlet")
 public class SeanceRegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // inscription séance après formulaire
         Seance seance_to_register = (Seance) request.getServletContext().getAttribute("seance_to_register");
-        User currentUser = (User)request.getServletContext().getAttribute("user");
+        User currentUser = (User)request.getServletContext().getAttribute("currentUser");
 
         String choixInscription = request.getParameter("choixStatus");
         String choixNbMinInscription = request.getParameter("joueurMin");
@@ -32,7 +34,7 @@ public class SeanceRegistrationServlet extends HttpServlet {
             if (choixInscription.equals("Certain")){
                 seance_to_register.addListUserInscritCertain(currentUser);
                 String validation_message_seance_register = "Vous avez été bien inscrit de manière certaine à la séance datant du " + seance_to_register.getDate();
-                request.setAttribute("message_seance", validation_message_seance_register);
+                request.setAttribute("message_seance", validation_message_seance_register);;
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
@@ -57,10 +59,6 @@ public class SeanceRegistrationServlet extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
             }
 
-            //List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute("listSeance");
-            //listSeance.add(seance_to_modify);
-            //getServletContext().setAttribute("listSeance", listSeance);
-
 
         }
     }
@@ -68,8 +66,8 @@ public class SeanceRegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // inscription séance avant formulaire
         String id = request.getParameter("id");
-        List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
-        User currentUser = (User)request.getServletContext().getAttribute("user");
+        List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(CONTEXT_SEANCES);
+        User currentUser = (User)request.getServletContext().getAttribute("currentUser");
         UUID UUID_id = UUID.fromString(id);
         for (Seance seance_to_register : listSeance) {
             if (seance_to_register.getIdSeance().equals(UUID_id) && currentUser != null) {
@@ -77,14 +75,6 @@ public class SeanceRegistrationServlet extends HttpServlet {
                 request.getServletContext().setAttribute("seance_to_register", seance_to_register);
 
                 this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
-
-                /*s.addListUserInscritCertain(currentUser);
-                getServletContext().setAttribute("listSeance", listSeance);
-                getServletContext().setAttribute("user", currentUser);
-                String validation_message_seance_registration = "Vous vous êtes bien inscrit de manière certaine à la séance datant du " + s.getDate();
-                request.setAttribute("message_seance", validation_message_seance_registration);
-
-                this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);*/
 
             }
             else{

@@ -1,4 +1,6 @@
 package model;
+import servlet.InitServlet;
+
 import java.util.*;
 
 /**
@@ -51,6 +53,8 @@ public class User {
     public void addListeMessages(Message message) { this.listeMessages.add(message); }
     public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
     public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
+
+
 
 
     private String generatePassword() {

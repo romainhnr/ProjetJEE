@@ -28,7 +28,7 @@ public class MessageServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/messagerie.jsp").forward(request, response);
         }
         else {
-            User currentUser = (User) request.getServletContext().getAttribute("user");
+            User currentUser = (User) request.getServletContext().getAttribute("currentUser");
             List<Message> currentListMessages = currentUser.getListeMessages();
             UUID UUID_id = UUID.fromString(id);
             for (Message message_make_read : currentListMessages) {

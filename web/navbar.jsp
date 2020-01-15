@@ -9,7 +9,7 @@
 <html>
 <head>
     <%  //User currentUser = ((User)(session.getAttribute("user")));
-        User currentUser = (User)request.getServletContext().getAttribute("user");
+        User currentUser = (User)request.getServletContext().getAttribute("currentUser");
     %>
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">

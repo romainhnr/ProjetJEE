@@ -1,5 +1,6 @@
 <%@ page import="model.Seance" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="servlet.InitServlet" %><%--
   Created by IntelliJ IDEA.
   User: romai
   Date: 03/12/2019
@@ -21,7 +22,7 @@
             out.println("<p> " + message_seance + "</p>");
         }
 
-        List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
+        List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(InitServlet.CONTEXT_SEANCES);
 
         if(listSeance == null || listSeance.isEmpty()){
             out.println("<h2> Aucune séance n'est présente </h2>");

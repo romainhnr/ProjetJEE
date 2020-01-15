@@ -84,6 +84,27 @@
         <url-pattern>/jeuxServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>InitServlet</servlet-name>
+        <servlet-class>servlet.InitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <init-param>
+            <param-name>users-path</param-name>
+            <param-value>data/users.csv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>seances-path</param-name>
+            <param-value>data/seances.csv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jeux-path</param-name>
+            <param-value>data/jeux.csv</param-value>
+        </init-param>
+        <init-param>
+            <param-name>messages-path</param-name>
+            <param-value>data/messages.csv</param-value>
+        </init-param>
+    </servlet>
 
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>

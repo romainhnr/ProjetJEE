@@ -16,6 +16,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
+import static servlet.InitServlet.CONTEXT_SEANCES;
+
 @WebServlet(name = "SeanceModifyServlet")
 public class SeanceModifyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,12 +48,12 @@ public class SeanceModifyServlet extends HttpServlet {
             //getServletContext().setAttribute("listSeance", listSeance);
 
             //messagerie
-            User currentUser = (User)request.getServletContext().getAttribute("user");
+            User currentUser = (User)request.getServletContext().getAttribute("currentUser");
             Message messageModifySeance = new Message("La séance datant du " + seance_to_modify.getDate() + " a été modifié. Les horaires sont maintenant : " + seance_to_modify.getHoraireDebut() + " à " + seance_to_modify.getHoraireFin() + ".<br/> Si vous voulez annuler votre inscription, <a href='unregistration_seance?id=" + seance_to_modify.getIdSeance() +"'>cliquer-ici</a>. En nous excusant de la gêne occassionée");
             if(seance_to_modify.getListUserInscritCertain().contains(currentUser) || seance_to_modify.getListUserInscritIncertain().contains(currentUser)){
                 currentUser.addListeMessages(messageModifySeance);
             }
-            getServletContext().setAttribute("user", currentUser);
+            getServletContext().setAttribute("currentUser", currentUser);
 
             String validation_message_seance_modify = "La séance datant du " + seance_to_modify.getDate() + " a bien été modifié";
             request.setAttribute("message_seance", validation_message_seance_modify);
@@ -63,7 +65,7 @@ public class SeanceModifyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // modification séance avant formulaire
         String id = request.getParameter("id");
-        List<Seance> listSeance = (List<Seance>)request.getServletContext().getAttribute("listSeance");
+        List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(CONTEXT_SEANCES);
         UUID UUID_id = UUID.fromString(id);
 
         for (Seance seance_to_modify : listSeance) {
