@@ -25,6 +25,7 @@
             if(seance.getIdSeance().equals(UUID_id)){
                 List<User> userIncertain = seance.getListUserInscritIncertain();
                 List<User> userCertain = seance.getListUserInscritCertain();
+                List<Jeux> jeuxDemander = seance.getSeanceListeJeux();
                 out.println("<h3>Inscrits certains: </h3>");
 
                 for (User userC : userCertain) {
@@ -56,7 +57,13 @@
                 }
 
                 out.println("<h3>Jeux demandés : </h3>");
-                out.println("<a class='button' href='askGame.jsp'> Demander un jeu </a>");
+                for (Jeux jeu : jeuxDemander){
+                    out.println("<div class='borderJ'> <h3> Titre : " + jeu.getTitre() + "</h3>");
+                    out.println("<h3> Thème : " + jeu.getTheme() + "</h3>");
+                    out.println("<h3> Durée : " + jeu.getDuree() + " min.</h3></div>");
+                }
+                out.println("<a class='button' href='askGame.jsp'> Demander un jeu </a><br/>");
+
                 out.println("Nombre des utilisateurs certains :" + certain + "<br/>");
                 out.println("Nombre des utilisateurs certains :" + incertain );
             }
