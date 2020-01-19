@@ -38,20 +38,14 @@
                 out.println("<h3> Date : " + seance.getDate() + "</h2>");
                 out.println("<h3> Horaire de début : " + seance.getHoraireDebut() + "</h3>");
                 out.println("<h3> Horaire de fin : " + seance.getHoraireFin() + "</h3>");
-                List<User> userCurrent = seance.getListUserInscrit();
-                for(User user : userCurrent){
-                    if(currentUser.equals(user)){
-                        out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
-                    }
-                    else {
-                        out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
-                    }
+                if(seance.getListUserInscritCertain().contains(currentUser) || seance.getListUserInscritIncertain().contains(currentUser)){
+                    out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
                 }
-                out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
-
-
-                out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir le détail de la séance</a><br/>");
-                if (currentUser != null && currentUser.getRole() == User.Role.ADMIN) {
+                else{
+                    out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
+                }
+                out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir la liste des inscrits</a><br/>");
+                if (currentUser.getRole() == User.Role.ADMIN) {
                     out.println("<a class='buttonImportant' href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
                     out.println("<a class='buttonImportant' href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a></div>");
                 }

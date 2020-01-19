@@ -15,18 +15,59 @@
     <% /* On veut parcourir les séances pour savoir la séance sur laquel on est, ensuite on récupère ses listes d'user
         inscrit et on affiche leurs détails.
        */
-        List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(InitServlet.CONTEXT_SEANCES);
+        /*List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(InitServlet.CONTEXT_SEANCES);
         String id = request.getParameter("id");
         UUID UUID_id = UUID.fromString(id);
         int certain = 0;
         int incertain = 0;
+        */
 
+        Seance seanceDetails_to_show = (Seance) request.getServletContext().getAttribute("seanceDetails_to_show");
+
+        out.println("<h3>Inscrits certains: </h3>");
+        for(User userCertain : seanceDetails_to_show.getListUserInscritCertain()){
+            out.println("<div class='jeuxCertains'><h3> Nom : " + userCertain.getNom() + "</h3>");
+            out.println("<h2> Jeu </h3>");
+            for (Jeux jeux : userCertain.getJeux()) {
+                out.println("<div class='borderJ'> <h3> Titre : " + jeux.getTitre() + "</h3>");
+                out.println("<h3> Thème : " + jeux.getTheme() + "</h3>");
+                out.println("<h3> Durée : " + jeux.getDuree() + " min.</h3> </div>");
+            }
+            out.println( "</div>");
+        }
+
+        out.println("<h3>Inscrits Incertains: </h3>");
+        for(User userIncertain : seanceDetails_to_show.getListUserInscritIncertain()){
+            out.println("<div class='jeuxCertains'><h3> Nom : " + userIncertain.getNom() + "</h3>");
+            out.println("<h2> Jeu </h3>");
+            for (Jeux jeux : userIncertain.getJeux()) {
+                out.println("<div class='borderJ'> <h3> Titre : " + jeux.getTitre() + "</h3>");
+                out.println("<h3> Thème : " + jeux.getTheme() + "</h3>");
+                out.println("<h3> Durée : " + jeux.getDuree() + " min.</h3> </div>");
+            }
+            out.println( "</div>");
+        }
+
+        out.println("<h3>Jeux demandés : </h3>");
+        for (Jeux jeu : seanceDetails_to_show.getSeanceListeJeux()){
+            out.println("<div class='borderJ'> <h3> Titre : " + jeu.getTitre() + "</h3>");
+            out.println("<h3> Thème : " + jeu.getTheme() + "</h3>");
+            out.println("<h3> Durée : " + jeu.getDuree() + " min.</h3></div>");
+        }
+        out.println("<a class='button' href='askGame.jsp'> Demander un jeu </a><br/>");
+
+        out.println("Nombre d'inscrits certains :" + seanceDetails_to_show.getListUserInscritCertain().size() + "<br/>");
+        out.println("Nombre d'inscrits incertains :" + seanceDetails_to_show.getListUserInscritIncertain().size() + "<br/>");
+        Integer totalInscrits = seanceDetails_to_show.getListUserInscritCertain().size() + seanceDetails_to_show.getListUserInscritIncertain().size();
+        out.println("Nombre d'inscrits au total :" + totalInscrits );
+
+/*
         for (Seance seance : listSeance){
             if(seance.getIdSeance().equals(UUID_id)){
                 List<User> userIncertain = seance.getListUserInscritIncertain();
                 List<User> userCertain = seance.getListUserInscritCertain();
-                List<Jeux> jeuxDemander = seance.getSeanceListeJeux();
-                out.println("<h3>Inscrits certains: </h3>");
+
+
 
                 for (User userC : userCertain) {
                     out.println("<div class='jeuxCertains'><h3> Nom : " + userC.getNom() + "</h3>");
@@ -56,18 +97,12 @@
                     incertain ++;
                 }
 
-                out.println("<h3>Jeux demandés : </h3>");
-                for (Jeux jeu : jeuxDemander){
-                    out.println("<div class='borderJ'> <h3> Titre : " + jeu.getTitre() + "</h3>");
-                    out.println("<h3> Thème : " + jeu.getTheme() + "</h3>");
-                    out.println("<h3> Durée : " + jeu.getDuree() + " min.</h3></div>");
-                }
-                out.println("<a class='button' href='askGame.jsp'> Demander un jeu </a><br/>");
+
 
                 out.println("Nombre des utilisateurs certains :" + certain + "<br/>");
                 out.println("Nombre des utilisateurs certains :" + incertain );
             }
-        }
+        }*/
     %>
 </body>
 </html>

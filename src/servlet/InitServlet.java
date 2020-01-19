@@ -212,9 +212,12 @@ public class InitServlet extends HttpServlet {
             }
             return new Message(message, dateDT, estLuB);
         }
+        else{
+            return new Message(message);
+        }
 
 
-        return new Message(message);
+
 
 
     }
