@@ -41,7 +41,7 @@
             }
 
         }
-
+        out.println("<a class='mdp' href='newPassword.jsp'>Modifier son mot de passe</a>");
     }
 
 %>

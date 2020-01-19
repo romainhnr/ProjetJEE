@@ -39,6 +39,17 @@
         <url-pattern>/add_remove_seance</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>passwordChangeServlet</servlet-name>
+        <servlet-class>servlet.passwordChangeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>passwordChangeServlet</servlet-name>
+        <url-pattern>/password_change</url-pattern>
+    </servlet-mapping>
+
+
     <servlet>
         <servlet-name>SeanceModifyServlet</servlet-name>
         <servlet-class>servlet.SeanceModifyServlet</servlet-class>

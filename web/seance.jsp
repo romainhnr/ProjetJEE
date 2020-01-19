@@ -44,11 +44,10 @@
                         out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
                     }
                     else {
-
+                        out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
                     }
                 }
                 out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
-
 
 
                 out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir le détail de la séance</a><br/>");

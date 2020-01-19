@@ -14,6 +14,7 @@
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/addJeux.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/addSeance.css">
     <link rel="stylesheet" href="css/pageSeances.css">
     <link rel="stylesheet" href="css/detailsSeance.css">
