@@ -76,6 +76,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>askGameServlet</servlet-name>
+        <servlet-class>servlet.askGameServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>askGameServlet</servlet-name>
+        <url-pattern>/askGameServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>JeuxServlet</servlet-name>
         <servlet-class>servlet.JeuxServlet</servlet-class>
     </servlet>

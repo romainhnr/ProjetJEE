@@ -35,10 +35,11 @@ public class SeanceUnregistrationServlet extends HttpServlet {
 
                 if (listUserRegisteredCertain.contains(currentUser)){
                     seance_to_unregister.removeListUserInscritCertain(currentUser);
-
+                    seance_to_unregister.removeListUserInscrit(currentUser);
                 }
                 else if (listUserRegisteredUncertain.contains(currentUser)){
                     seance_to_unregister.removeListUserInscritIncertain(currentUser);
+                    seance_to_unregister.removeListUserInscrit(currentUser);
                 }
                 else {
                     String error_message_seance_unregistration = "Erreur : Vous n'êtes pas inscrit à la séance";

@@ -14,6 +14,6 @@ public class SeanceDetailsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/seanceDetails.jsp").forward(request, response);
     }
 }

@@ -33,6 +33,9 @@ public class SeanceRegistrationServlet extends HttpServlet {
         else {
             if (choixInscription.equals("Certain")){
                 seance_to_register.addListUserInscritCertain(currentUser);
+                seance_to_register.addListUserInscrit(currentUser);
+                //seance_to_register.setInscritOuNon(true);
+                //currentUser.
                 String validation_message_seance_register = "Vous avez été bien inscrit de manière certaine à la séance datant du " + seance_to_register.getDate();
                 request.setAttribute("message_seance", validation_message_seance_register);;
 
@@ -46,6 +49,7 @@ public class SeanceRegistrationServlet extends HttpServlet {
                 }
                 else {
                     seance_to_register.addListUserInscritIncertain(currentUser);
+                    seance_to_register.addListUserInscrit(currentUser);
                     currentUser.setNbAdherentMinInscription(Integer.parseInt(choixNbMinInscription));
                     String validation_message_seance_register = "Vous avez été bien inscrit de manière incertaine à la séance datant du " + seance_to_register.getDate();
                     request.setAttribute("message_seance", validation_message_seance_register);

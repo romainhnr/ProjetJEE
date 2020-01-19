@@ -1,5 +1,4 @@
 package model;
-import servlet.InitServlet;
 
 import java.util.*;
 
@@ -16,6 +15,7 @@ public class User {
     private List<Jeux> listeJeux;
     private List<Message> listeMessages;
     private Integer nbAdherentMinInscription;
+    private String minimum;
 
     public enum Role {
         USER,
@@ -53,9 +53,8 @@ public class User {
     public void addListeMessages(Message message) { this.listeMessages.add(message); }
     public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
     public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
-
-
-
+    public String getMinimum() { return minimum; }
+    public void setMinimum(String minimum) { this.minimum = minimum; }
 
     private String generatePassword() {
         // TODO à générer aléatoirement
