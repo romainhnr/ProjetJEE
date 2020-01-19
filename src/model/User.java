@@ -2,9 +2,7 @@ package model;
 
 import java.util.*;
 
-/**
- * 
- */
+
 public class User {
 
     private UUID idUser;
@@ -23,9 +21,6 @@ public class User {
     }
 
 
-    /**
-     * Default constructor
-     */
     public User(String login, String password, String nom, Role role) {
         this.idUser = UUID.randomUUID();
         this.login = login;
@@ -46,13 +41,27 @@ public class User {
     public void setNom(String nom) { this.nom = nom; }
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
-    public List<Jeux> getJeux() { return listeJeux; }
-    public void addListeJeux(Jeux jeu) { this.listeJeux.add(jeu); }
-    public void removeListeJeux(Jeux jeu) { this.listeJeux.remove(jeu); }
-    public List<Message> getListeMessages() { return listeMessages; }
-    public void addListeMessages(Message message) { this.listeMessages.add(message); }
-    public Integer getNbAdherentMinInscription() { return nbAdherentMinInscription; }
-    public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) { this.nbAdherentMinInscription = nbAdherentMinInscription; }
+    public List<Jeux> getJeux() {
+        return listeJeux;
+    }
+    public void addListeJeux(Jeux jeu) {
+        this.listeJeux.add(jeu);
+    }
+    public void removeListeJeux(Jeux jeu) {
+        this.listeJeux.remove(jeu);
+    }
+    public List<Message> getListeMessages() {
+        return listeMessages;
+    }
+    public void addListeMessages(Message message) {
+        this.listeMessages.add(message);
+    }
+    public Integer getNbAdherentMinInscription() {
+        return nbAdherentMinInscription;
+    }
+    public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) {
+        this.nbAdherentMinInscription = nbAdherentMinInscription;
+    }
     public String getMinimum() { return minimum; }
     public void setMinimum(String minimum) { this.minimum = minimum; }
 

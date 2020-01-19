@@ -1,5 +1,6 @@
 package servlet;
 
+import model.Jeux;
 import model.Message;
 import model.Seance;
 import model.User;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.DateFormatter;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -54,8 +58,28 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
             listSeance.add(newSeance);
             getServletContext().setAttribute(CONTEXT_SEANCES, listSeance);
 
-            String validation_message_seance_creation = "La séance datant du : " + newSeance.getDate() + " a bien été crée";
+            String validation_message_seance_creation = "La séance datant du : " + newSeance.getDate() + " a bien été créé";
             request.setAttribute("message_seance", validation_message_seance_creation);
+
+            //sauvegarde
+            try {
+                System.out.println("Ecriture fichier séances début");
+                BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/seances.csv")));
+
+                for (Seance seance_to_save : listSeance) {
+                    writer.write(seance_to_save.getDate()+",");
+                    writer.write(seance_to_save.getHoraireDebut()+",");
+                    writer.write(seance_to_save.getHoraireFin().toString());
+
+                    writer.newLine();
+                }
+
+                writer.close();
+                System.out.println("Ecriture fichier seances fin");
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
             this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
         }
@@ -75,14 +99,35 @@ public class SeanceAdd_RemoveServlet extends HttpServlet {
 
                 //messagerie
                 User currentUser = (User)request.getServletContext().getAttribute("currentUser");
-                Message messageDeleteSeance = new Message("La séance datant du " + seance_to_delete.getDate() + " a été supprimée.\nVous êtes donc désinscrit de celle-ci. En nous excusant de la gêne occassionée");
                 if(seance_to_delete.getListUserInscritCertain().contains(currentUser) || seance_to_delete.getListUserInscritIncertain().contains(currentUser)){
+                    Message messageDeleteSeance = new Message("La séance datant du " + seance_to_delete.getDate() + " a été supprimée.\nVous êtes donc désinscrit de celle-ci. En nous excusant de la gêne occassionée.");
                     currentUser.addListeMessages(messageDeleteSeance);
+                    getServletContext().setAttribute("currentUser", currentUser);
+                    String message_alert = "Vous avez reçu un nouveau message !";
+                    request.setAttribute("message_alert", message_alert);
                 }
-                getServletContext().setAttribute("currentUser", currentUser);
 
                 String validation_message_seance_delete = "La séance datant du " + seance_to_delete.getDate() + " a bien été supprimée";
                 request.setAttribute("message_seance", validation_message_seance_delete);
+
+                try {
+                    System.out.println("Ecriture fichier séances début");
+                    BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/seances.csv")));
+
+                    for (Seance seance_to_save : listSeance) {
+                        writer.write(seance_to_save.getDate()+",");
+                        writer.write(seance_to_save.getHoraireDebut()+",");
+                        writer.write(seance_to_save.getHoraireFin().toString());
+
+                        writer.newLine();
+                    }
+
+                    writer.close();
+                    System.out.println("Ecriture fichier séances fin");
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
 

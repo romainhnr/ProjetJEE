@@ -1,5 +1,6 @@
 package servlet;
 
+import model.Jeux;
 import model.Message;
 import model.Seance;
 import model.User;
@@ -9,7 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +42,24 @@ public class MessageServlet extends HttpServlet {
                     }
                     else {
                         message_make_read.setEstLu(true);
+                    }
+                    //sauvegarde
+                    try {
+                        System.out.println("Ecriture fichier messages début");
+                        BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/messages.csv")));
+
+                        for (Message msg_to_save : currentUser.getListeMessages()) {
+                            writer.write(msg_to_save.getTexteMessage()+",");
+                            writer.write(msg_to_save.getDateTimeMessage()+",");
+                            writer.write(msg_to_save.getEstLu().toString());
+                            writer.newLine();
+                        }
+
+                        writer.close();
+                        System.out.println("Ecriture fichier messages fin");
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
 
                 }

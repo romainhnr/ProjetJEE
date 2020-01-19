@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static servlet.InitServlet.CONTEXT_SEANCES;
+import static servlet.InitServlet.CONTEXT_USERS;
 
 @WebServlet(name = "SeanceRegistrationServlet")
 public class SeanceRegistrationServlet extends HttpServlet {
@@ -39,6 +40,11 @@ public class SeanceRegistrationServlet extends HttpServlet {
                 String validation_message_seance_register = "Vous avez été bien inscrit de manière certaine à la séance datant du " + seance_to_register.getDate();
                 request.setAttribute("message_seance", validation_message_seance_register);;
 
+                List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(CONTEXT_SEANCES);
+                listSeance.remove(seance_to_register);
+                listSeance.add(seance_to_register);
+                getServletContext().setAttribute(CONTEXT_SEANCES, listSeance);
+
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
             else if(choixInscription.equals("Incertain")){
@@ -53,6 +59,16 @@ public class SeanceRegistrationServlet extends HttpServlet {
                     currentUser.setNbAdherentMinInscription(Integer.parseInt(choixNbMinInscription));
                     String validation_message_seance_register = "Vous avez été bien inscrit de manière incertaine à la séance datant du " + seance_to_register.getDate();
                     request.setAttribute("message_seance", validation_message_seance_register);
+
+                    List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(CONTEXT_SEANCES);
+                    listSeance.remove(seance_to_register);
+                    listSeance.add(seance_to_register);
+                    getServletContext().setAttribute(CONTEXT_SEANCES, listSeance);
+
+                    List<User> listUser = (List<User>) request.getServletContext().getAttribute(InitServlet.CONTEXT_USERS);
+                    listUser.remove(currentUser);
+                    listUser.add(currentUser);
+                    getServletContext().setAttribute(CONTEXT_USERS, listUser);
 
                     this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
                 }

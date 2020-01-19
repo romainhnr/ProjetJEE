@@ -1,11 +1,7 @@
 package model;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.time.*;
 
-/**
- Classe Séance*
- */
 public class Seance {
 
     private UUID idSeance;
@@ -17,9 +13,7 @@ public class Seance {
     private List<User> listUserInscrit;
     private List<Jeux> seanceListeJeux;
 
-    /**
-     * Default constructor
-     */
+
     public Seance(LocalDate date, LocalTime horaireDebut, LocalTime horaireFin) {
         this.idSeance = UUID.randomUUID();
         this.date = date;

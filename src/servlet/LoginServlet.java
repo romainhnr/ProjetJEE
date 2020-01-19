@@ -10,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -23,27 +29,27 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        boolean isAuthentified = false;
         User currentUser = null;
 
         List<User> listUser = (List<User>) request.getServletContext().getAttribute(InitServlet.CONTEXT_USERS);
         for (User user : listUser) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                isAuthentified = true;
                 currentUser = user;
             }
         }
 
-        if (isAuthentified){
+        if (currentUser != null){
             HttpSession session = request.getSession();
 
             List<Jeux> listJeux = (List<Jeux>) request.getServletContext().getAttribute(InitServlet.CONTEXT_JEUX);
-            currentUser.addListeJeux(listJeux.get(0));
-            currentUser.addListeJeux(listJeux.get(1));
+            for (Jeux jeu_to_load : listJeux) {
+                currentUser.addListeJeux(jeu_to_load);
+            }
 
             List<Message> listMessage = (List<Message>) request.getServletContext().getAttribute(InitServlet.CONTEXT_MESSAGES);
-            currentUser.addListeMessages(listMessage.get(0));
-            currentUser.addListeMessages(listMessage.get(1));
+            for (Message msg_to_load : listMessage) {
+                currentUser.addListeMessages(msg_to_load);
+            }
 
             getServletContext().setAttribute("currentUser", currentUser);
 

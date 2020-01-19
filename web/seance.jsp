@@ -21,6 +21,11 @@
             String message_seance = (String) request.getAttribute("message_seance");
             out.println("<p> " + message_seance + "</p>");
         }
+        if((request.getAttribute("message_alert")) != null)
+        {
+            String message_alert = (String) request.getAttribute("message_alert");
+            out.println("<p> " + message_alert + "</p>");
+        }
 
         List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(InitServlet.CONTEXT_SEANCES);
 

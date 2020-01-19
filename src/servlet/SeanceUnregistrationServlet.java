@@ -47,8 +47,9 @@ public class SeanceUnregistrationServlet extends HttpServlet {
                     this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
                 }
 
+                listSeance.remove(seance_to_unregister);
+                listSeance.add(seance_to_unregister);
                 getServletContext().setAttribute(CONTEXT_SEANCES , listSeance);
-                getServletContext().setAttribute("currentUser", currentUser);
 
                 String validation_message_seance_registration = "Vous vous êtes bien désinscrit de la séance datant du " + seance_to_unregister.getDate();
                 request.setAttribute("message_seance", validation_message_seance_registration);

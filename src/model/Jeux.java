@@ -1,9 +1,6 @@
 package model;
 import java.util.*;
 
-/**
- * 
- */
 public class Jeux {
 
     private UUID idJeux;

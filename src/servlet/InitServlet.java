@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +162,6 @@ public class InitServlet extends HttpServlet {
         LocalTime hourFD = LocalTime.parse(hourFS);
 
 
-
         return new Seance(dateD, hoursDD, hourFD);
     }
 
@@ -197,6 +197,22 @@ public class InitServlet extends HttpServlet {
         String[] elements = line.split(",");
 
         String message = elements[0];
+
+        if(elements[1] != null){
+            String date = elements[1];
+            String estLu = elements[2];
+            LocalDateTime dateDT = LocalDateTime.parse(date);
+            boolean estLuB;
+
+            if (estLu.equals("true")){
+                estLuB = true;
+            }
+            else{
+                estLuB = false;
+            }
+            return new Message(message, dateDT, estLuB);
+        }
+
 
         return new Message(message);
 

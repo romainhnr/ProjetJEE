@@ -9,8 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedWriter;
 import java.io.Console;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,11 +71,33 @@ public class JeuxServlet extends HttpServlet {
             Jeux newJeux = new Jeux(titreJeu, descriptionJeu, themeJeu, dureeJeu, nbminJeu, nbmaxJeu);
             User currentUser = (User)request.getServletContext().getAttribute("currentUser");
             currentUser.addListeJeux(newJeux);
-
             getServletContext().setAttribute("currentUser", currentUser);
 
-            //String validation_message_seance_creation = "La séance datant du : " + newSeance.date + " a bien été crée";
-            //request.setAttribute("message_seance", validation_message_seance_creation);
+            // sauvegarde
+            try {
+                System.out.println("Ecriture fichier jeux début");
+                BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/jeux.csv")));
+
+                for (Jeux jeu_to_save : currentUser.getJeux()) {
+                    writer.write(jeu_to_save.getTitre()+",");
+                    writer.write(jeu_to_save.getDescription()+",");
+                    writer.write(jeu_to_save.getTheme().toString().toLowerCase()+",");
+                    writer.write(jeu_to_save.getDuree().toString()+",");
+                    writer.write(jeu_to_save.getNbJoueurMin().toString()+",");
+                    writer.write(jeu_to_save.getNbJoueurMax().toString());
+                    writer.newLine();
+                }
+
+                writer.close();
+                System.out.println("Ecriture fichier jeux fin");
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+
+            String message_jeu = "Le jeu " + newJeux.getTitre() + " a bien été rajouté";
+            request.setAttribute("message_jeu", message_jeu);
 
             this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
 
@@ -93,6 +119,28 @@ public class JeuxServlet extends HttpServlet {
 
                 String validation_message_jeu_delete = "Le jeu se nommant " + jeu.getTitre() + " a bien été supprimé de votre liste";
                 request.setAttribute("message_jeu", validation_message_jeu_delete);
+
+                // sauvegarde
+                try {
+                    System.out.println("Ecriture fichier jeux début");
+                    BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/jeux.csv")));
+
+                    for (Jeux jeu_to_save : currentUser.getJeux()) {
+                        writer.write(jeu_to_save.getTitre()+",");
+                        writer.write(jeu_to_save.getDescription()+",");
+                        writer.write(jeu_to_save.getTheme().toString().toLowerCase()+",");
+                        writer.write(jeu_to_save.getDuree().toString()+",");
+                        writer.write(jeu_to_save.getNbJoueurMin().toString()+",");
+                        writer.write(jeu_to_save.getNbJoueurMax().toString());
+                        writer.newLine();
+                    }
+
+                    writer.close();
+                    System.out.println("Ecriture fichier jeux fin");
+
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
 
                 this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
 

@@ -13,15 +13,19 @@ public class Message {
     private Boolean estLu;
 
 
-    /**
-     * Default constructor
-     */
     public Message(String texteMessage) {
         this.idMessage = UUID.randomUUID();
         this.texteMessage = texteMessage;
-        //this.dateTimeMessage = LocalDateTime.of(2020, 1, 2, 5, 5, 42);
         this.dateTimeMessage = LocalDateTime.now();
         this.estLu = false;
+
+    }
+
+    public Message(String texteMessage, LocalDateTime dateTimeMessage, Boolean estLu) {
+        this.idMessage = UUID.randomUUID();
+        this.texteMessage = texteMessage;
+        this.dateTimeMessage = dateTimeMessage;
+        this.estLu = estLu;
 
     }
 

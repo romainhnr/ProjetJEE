@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -43,20 +46,43 @@ public class SeanceModifyServlet extends HttpServlet {
             seance_to_modify.setHoraireDebut(LT_heureDebut);
             seance_to_modify.setHoraireFin(LT_heureFin);
 
-            //List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute("listSeance");
-            //listSeance.add(seance_to_modify);
-            //getServletContext().setAttribute("listSeance", listSeance);
+            List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(CONTEXT_SEANCES);
+            listSeance.remove(seance_to_modify);
+            listSeance.add(seance_to_modify);
+            getServletContext().setAttribute(CONTEXT_SEANCES, listSeance);
 
             //messagerie
             User currentUser = (User)request.getServletContext().getAttribute("currentUser");
-            Message messageModifySeance = new Message("La séance datant du " + seance_to_modify.getDate() + " a été modifié. Les horaires sont maintenant : " + seance_to_modify.getHoraireDebut() + " à " + seance_to_modify.getHoraireFin() + ".<br/> Si vous voulez annuler votre inscription, <a href='unregistration_seance?id=" + seance_to_modify.getIdSeance() +"'>cliquer-ici</a>. En nous excusant de la gêne occassionée");
             if(seance_to_modify.getListUserInscritCertain().contains(currentUser) || seance_to_modify.getListUserInscritIncertain().contains(currentUser)){
+                Message messageModifySeance = new Message("La séance datant du " + seance_to_modify.getDate() + " a été modifié. Les horaires sont maintenant : " + seance_to_modify.getHoraireDebut() + " à " + seance_to_modify.getHoraireFin() + ".<br/> Si vous voulez annuler votre inscription <a href='unregistration_seance?id=" + seance_to_modify.getIdSeance() +"'>cliquer-ici</a>. En nous excusant de la gêne occassionée.");
                 currentUser.addListeMessages(messageModifySeance);
+                getServletContext().setAttribute("currentUser", currentUser);
+                String message_alert = "Vous avez reçu un nouveau message !";
+                request.setAttribute("message_alert", message_alert);
             }
-            getServletContext().setAttribute("currentUser", currentUser);
 
             String validation_message_seance_modify = "La séance datant du " + seance_to_modify.getDate() + " a bien été modifié";
             request.setAttribute("message_seance", validation_message_seance_modify);
+
+            // sauvegarde
+            try {
+                System.out.println("Ecriture fichier séances début");
+                BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/seances.csv")));
+
+                for (Seance seance_to_save : listSeance) {
+                    writer.write(seance_to_save.getDate()+",");
+                    writer.write(seance_to_save.getHoraireDebut()+",");
+                    writer.write(seance_to_save.getHoraireFin().toString());
+
+                    writer.newLine();
+                }
+
+                writer.close();
+                System.out.println("Ecriture fichier séances fin");
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
             this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
         }
