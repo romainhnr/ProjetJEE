@@ -60,6 +60,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>GestionAdherents</servlet-name>
+        <servlet-class>servlet.gestionAdherents</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GestionAdherents</servlet-name>
+        <url-pattern>/gestion_adherents</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SeanceRegistrationServlet</servlet-name>
         <servlet-class>servlet.SeanceRegistrationServlet</servlet-class>
     </servlet>
@@ -75,6 +84,24 @@
     <servlet-mapping>
         <servlet-name>SeanceUnregistrationServlet</servlet-name>
         <url-pattern>/unregistration_seance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>nouveauAdherentsServlet</servlet-name>
+        <servlet-class>servlet.newUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>nouveauAdherentsServlet</servlet-name>
+        <url-pattern>/new_user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <servlet-class>servlet.resetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <url-pattern>/reset_password</url-pattern>
     </servlet-mapping>
 
     <servlet>

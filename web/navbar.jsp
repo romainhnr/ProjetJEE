@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="css/addSeance.css">
     <link rel="stylesheet" href="css/pageSeances.css">
+    <link rel="stylesheet" href="css/newUser.css">
     <link rel="stylesheet" href="css/detailsSeance.css">
     <link rel="stylesheet" href="css/inscriptionSeance.css">
 
@@ -34,7 +35,7 @@
                     <li><a href="seance.jsp">Séances</a></li>
                     <li><a href="messagerie">Messagerie</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
-                    <li class="gestion"> <a href='#'>Gestion Adhérents</a> </li>
+                    <li class="gestion"> <a href='gestionAdhérents.jsp'>Gestion Adhérents</a> </li>
                     <% } %>
                     <li><a href="logout">Déconnexion</a></li>
                 </ul>

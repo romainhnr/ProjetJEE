@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
+
 <body>
     <div class="test">
         <form action="password_change" method="post">
@@ -23,9 +24,10 @@
             <input type="password" placeholder="Confirm password" id="confirm_password" name="confirm_password" required>
             <br/><br/>
 
-            <input type="submit" value="Sauvegarder">
+            <input class="button"  type="submit" value="Sauvegarder">
         </form>
     </div>
+
     <% if((request.getAttribute("message_error_password")) != null)
     {
         String error_message = (String) request.getAttribute("message_error_password");
@@ -36,8 +38,6 @@
         String error_message = (String) request.getAttribute("message_error_equalsPasswords");
         out.println("<p class='errorMsg'> " + error_message + "</p>");
     }
-
-
     %>
 
 </body>
