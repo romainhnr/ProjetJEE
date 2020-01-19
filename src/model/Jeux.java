@@ -1,6 +1,7 @@
 package model;
 import java.util.*;
 
+// Classe jeux pour la liste des jeux des utilisateurs
 public class Jeux {
 
     private UUID idJeux;
@@ -18,6 +19,7 @@ public class Jeux {
 
     }
 
+    // getter & setter
     public UUID getIdJeux() {
         return idJeux;
     }
@@ -41,9 +43,7 @@ public class Jeux {
     }
 
 
-    /**
-     * Default constructor
-     */
+    // constructeur
     public Jeux(String titre, String description, Theme theme, Integer duree, Integer nbJoueurMin, Integer nbJoueurMax) {
         this.idJeux = UUID.randomUUID();
         this.titre = titre;

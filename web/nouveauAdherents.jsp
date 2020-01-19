@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
-
+<% if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) { %>
 <body>
     <div class="newUser">
         <h3>Créer un utilisateur</h3>
@@ -23,12 +23,8 @@
             <input type="text" placeholder="Nom" id="nom" name="nom" required>
             <br/><br/>
 
-            <label>Prénom :</label><br/>
-            <input type="text" placeholder="Prénom utilisateur" id="prénom" name="prénom" required>
-            <br/><br/>
-
-            <label>Username :</label><br/>
-            <input type="text" placeholder="Nom de compte" id="username" name="username" required>
+            <label>Login :</label><br/>
+            <input type="text" placeholder="Nom de compte" id="username" name="login" required>
             <br/><br/>
 
             <label>Mot de passe :</label><br/>
@@ -51,4 +47,5 @@
     }
 %>
 </body>
+<% } %>
 </html>

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
-
+<% if(currentUser != null) { %>
 <body>
     <div class="test">
         <form action="password_change" method="post">
@@ -41,5 +41,6 @@
     %>
 
 </body>
+<% } %>
 
 </html>

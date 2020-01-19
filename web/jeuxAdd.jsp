@@ -8,8 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
 <body>
-<%
-    if(currentUser != null) { %>
+<% if(currentUser != null) { %>
     <div class="test">
         <form id="formJeux" class="formJeux" action="jeuxServlet" method="post">
             <label for="thème">Thème : </label><br/>

@@ -15,10 +15,10 @@
     <div class="login">
         <form action="login" method="post">
                 <label for="inputLogin">Login :</label></br>
-                <input type="text" name="login" placeholder="login"  id="inputLogin" class="test "/>
+                <input type="text" name="login" placeholder="Login"  id="inputLogin" class="test "/>
                 </br></br>
                 <label for="inputPassword">Mot de passe: </label></br>
-                <input type="password" name="password" placeholder="mot de passe" id="inputPassword"/>
+                <input type="password" name="password" placeholder="Mot de passe" id="inputPassword"/>
                 </br></br>
                 <input type="submit" value="Connexion" /></br></br>
 

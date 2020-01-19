@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
-
+<% if(currentUser != null && currentUser.getRole() == User.Role.ADMIN) { %>
 <body>
     <div class="reset">
         <h3>Réinitialiser un mdp :</h3>
@@ -20,23 +20,24 @@
             <input type="password" placeholder="Password utilisateur" id="resetUserPassword" name="resetUserPassword" required>
             <br/><br/>
 
-            <label>Confirmez le mdp :</label><br/>
+            <label>Confirmez le mot de passe :</label><br/>
             <input type="password" placeholder="Password utilisateur" id="confirmUserResetPassword" name="confirmUserResetPassword" required>
             <br/><br/>
 
-            <label>Votre mdp admin :</label><br/>
+            <label>Votre mot de passe admin :</label><br/>
             <input type="password" placeholder="votre mot de passe admin" id="passwordReset" name="passwordReset" required>
             <br/><br/>
 
-            <input class="button" type="submit" value="Réinitialiser mdp">
+            <input class="button" type="submit" value="Réinitialiser">
         </form>
     </div>
 <%
-    if((request.getAttribute("admin_error_password")) != null)
+    if((request.getAttribute("error_form_password")) != null)
     {
-        String error_message = (String) request.getAttribute("admin_error_password");
-        out.println("<p class='errorMsg'> " + error_message + "</p>");
+        String error_form_password = (String) request.getAttribute("error_form_password");
+        out.println("<p class='errorMsg'> " + error_form_password + "</p>");
     }
 %>
 </body>
+<% } %>
 </html>

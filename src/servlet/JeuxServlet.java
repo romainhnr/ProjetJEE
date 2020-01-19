@@ -2,27 +2,23 @@ package servlet;
 
 import model.Jeux;
 import model.User;
-
-import javax.lang.model.type.NullType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedWriter;
-import java.io.Console;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.UUID;
 
+// Servlet des jeux gérant la création et la suppression d'un jeu
 @WebServlet(name = "JeuxServlet")
 public class JeuxServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // création jeux
+        // récupérations des champs du formulaire
         String choixTheme = request.getParameter("choixTheme");
         String titre = request.getParameter("titre");
         String duree = request.getParameter("duree");
@@ -67,13 +63,13 @@ public class JeuxServlet extends HttpServlet {
                 request.setAttribute("message_jeu", error_message_jeu_creation);
                 this.getServletContext().getRequestDispatcher("/jeuxAdd.jsp").forward(request, response);
             }
-
+            // après vérification création du jeu
             Jeux newJeux = new Jeux(titreJeu, descriptionJeu, themeJeu, dureeJeu, nbminJeu, nbmaxJeu);
             User currentUser = (User)request.getServletContext().getAttribute("currentUser");
             currentUser.addListeJeux(newJeux);
             getServletContext().setAttribute("currentUser", currentUser);
 
-            // sauvegarde
+            // sauvegarde des jeux
             try {
                 System.out.println("Ecriture fichier jeux début");
                 BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/jeux.csv")));
@@ -120,7 +116,7 @@ public class JeuxServlet extends HttpServlet {
                 String validation_message_jeu_delete = "Le jeu se nommant " + jeu.getTitre() + " a bien été supprimé de votre liste";
                 request.setAttribute("message_jeu", validation_message_jeu_delete);
 
-                // sauvegarde
+                // sauvegarde des jeux
                 try {
                     System.out.println("Ecriture fichier jeux début");
                     BufferedWriter writer = Files.newBufferedWriter(Path.of(getServletContext().getRealPath("data/jeux.csv")));
@@ -143,13 +139,11 @@ public class JeuxServlet extends HttpServlet {
                 }
 
                 this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
-
-            }
-            else{
-                String error_message_jeu_delete = "Erreur : le jeu n'a pas été trouvé";
-                request.setAttribute("message_seance", error_message_jeu_delete);
-                this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
             }
         }
+        // jeu non trouvé après le for les parcourants
+        String error_message_jeu_delete = "Erreur : le jeu n'a pas été trouvé";
+        request.setAttribute("message_seance", error_message_jeu_delete);
+        this.getServletContext().getRequestDispatcher("/profil.jsp").forward(request, response);
     }
 }

@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-
+// classe User représentant les adhérents et les admins selon le champ role
 public class User {
 
     private UUID idUser;
@@ -13,14 +13,13 @@ public class User {
     private List<Jeux> listeJeux;
     private List<Message> listeMessages;
     private Integer nbAdherentMinInscription;
-    private String minimum;
 
     public enum Role {
         USER,
         ADMIN;
     }
 
-
+    // constructeur
     public User(String login, String password, String nom, Role role) {
         this.idUser = UUID.randomUUID();
         this.login = login;
@@ -32,6 +31,7 @@ public class User {
         this.nbAdherentMinInscription = null;
     }
 
+    // getter & setter
     public UUID getIdUser() { return idUser; }
     public String getLogin() { return login; }
     public void setLogin(String login) { this.login = login; }
@@ -62,43 +62,7 @@ public class User {
     public void setNbAdherentMinInscription(Integer nbAdherentMinInscription) {
         this.nbAdherentMinInscription = nbAdherentMinInscription;
     }
-    public String getMinimum() { return minimum; }
-    public void setMinimum(String minimum) { this.minimum = minimum; }
-
-    private String generatePassword() {
-        // TODO à générer aléatoirement
-        // TODO ou classe Authentification réunissant login et mdp des admins et users
-        return "toto";
-    }
 
 
-    /**
-     * @param idSeance
-     */
-    public void InscriptionSeance(UUID idSeance) {
-        // TODO implement here
-    }
-
-    /**
-     * @param idSeance
-     */
-    public void DesinscriptionSeance(UUID idSeance) {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void ModificationTypeInscription() {
-        // TODO implement here
-    }
-
-    /**
-     * @param idUser
-     * @param idJeux
-     */
-    public void DemandeApportJeux(UUID idUser, UUID idJeux) {
-        // TODO implement here
-    }
 
 }

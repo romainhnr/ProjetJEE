@@ -15,13 +15,16 @@ import java.util.UUID;
 import static servlet.InitServlet.CONTEXT_SEANCES;
 import static servlet.InitServlet.CONTEXT_USERS;
 
+
+//servlet permettant l'inscription à une séance : avant et après le formulaire associé (choix certain et incertain)
 @WebServlet(name = "SeanceRegistrationServlet")
 public class SeanceRegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     // inscription séance après formulaire
         Seance seance_to_register = (Seance) request.getServletContext().getAttribute("seance_to_register");
         User currentUser = (User)request.getServletContext().getAttribute("currentUser");
-
+        // récupération des champs du formulaire
         String choixInscription = request.getParameter("choixStatus");
         String choixNbMinInscription = request.getParameter("joueurMin");
 
@@ -32,11 +35,10 @@ public class SeanceRegistrationServlet extends HttpServlet {
         }
 
         else {
+            // si l'utilisateur a choisi certain alors on le rajoute à la liste associée
             if (choixInscription.equals("Certain")){
                 seance_to_register.addListUserInscritCertain(currentUser);
-                seance_to_register.addListUserInscrit(currentUser);
-                //seance_to_register.setInscritOuNon(true);
-                //currentUser.
+                //seance_to_register.addListUserInscrit(currentUser);
                 String validation_message_seance_register = "Vous avez été bien inscrit de manière certaine à la séance datant du " + seance_to_register.getDate();
                 request.setAttribute("message_seance", validation_message_seance_register);;
 
@@ -53,9 +55,10 @@ public class SeanceRegistrationServlet extends HttpServlet {
                     request.setAttribute("message_seance", error_message_seance_inscription);
                     this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
                 }
+                // sinon et après vérification du champ on le rajoute à la liste associée
                 else {
                     seance_to_register.addListUserInscritIncertain(currentUser);
-                    seance_to_register.addListUserInscrit(currentUser);
+                    //seance_to_register.addListUserInscrit(currentUser);
                     currentUser.setNbAdherentMinInscription(Integer.parseInt(choixNbMinInscription));
                     String validation_message_seance_register = "Vous avez été bien inscrit de manière incertaine à la séance datant du " + seance_to_register.getDate();
                     request.setAttribute("message_seance", validation_message_seance_register);
@@ -95,14 +98,13 @@ public class SeanceRegistrationServlet extends HttpServlet {
                 request.getServletContext().setAttribute("seance_to_register", seance_to_register);
 
                 this.getServletContext().getRequestDispatcher("/seanceRegistration.jsp").forward(request, response);
+            }
 
-            }
-            else{
-                String error_message_seance_registration = "Erreur : la séance ou l'utilisateur n'a pas été trouvé";
-                request.setAttribute("message_seance", error_message_seance_registration);
-                this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
-            }
         }
+        // séance non trouvée après le for parcourant chacune d'entre elles ou user null
+        String error_message_seance_registration = "Erreur : la séance ou l'utilisateur n'a pas été trouvé";
+        request.setAttribute("message_seance", error_message_seance_registration);
+        this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
 
     }
 }

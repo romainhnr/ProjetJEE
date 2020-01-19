@@ -8,9 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%  //User currentUser = ((User)(session.getAttribute("user")));
-        User currentUser = (User)request.getServletContext().getAttribute("currentUser");
-    %>
+    <% User currentUser = (User)request.getServletContext().getAttribute("currentUser"); %>
     <title>ProjetJEE</title>
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/addJeux.css">
@@ -35,7 +33,7 @@
                     <li><a href="seance.jsp">Séances</a></li>
                     <li><a href="messagerie">Messagerie</a></li>
                     <% if(currentUser.getRole() == User.Role.ADMIN) { %>
-                    <li class="gestion"> <a href='gestionAdhérents.jsp'>Gestion Adhérents</a> </li>
+                    <li class="gestion"> <a href='gestionAdherents.jsp'>Gestion Adhérents</a> </li>
                     <% } %>
                     <li><a href="logout">Déconnexion</a></li>
                 </ul>

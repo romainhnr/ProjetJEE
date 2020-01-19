@@ -16,19 +16,24 @@
             out.println("<h2>Vous êtes un admin</h2><i>un grand pouvoir implique de grandes responsabilités ...</i>");
         }
 
-        if(currentUser.getJeux().isEmpty()){
-            out.println("<h2>Vous n'avez pas encore ajouté de jeu à votre profil</h2>");
-            out.println("<a class='button' href='jeuxAdd.jsp'> Ajouter un jeu </a>");
-
-        }
         if((request.getAttribute("message_jeu")) != null)
         {
             String message_jeu = (String) request.getAttribute("message_jeu");
             out.println("<p> " + message_jeu + "</p>");
         }
-        if (!(currentUser.getJeux().isEmpty())) {
+        if((request.getAttribute("message_mdp")) != null)
+        {
+            String message_mdp = (String) request.getAttribute("message_mdp");
+            out.println("<p> " + message_mdp + "</p>");
+        }
+
+        if(currentUser.getJeux().isEmpty()){
+            out.println("<h2>Vous n'avez pas encore ajouté de jeu à votre profil</h2>");
+            out.println("<a class='button' href='jeuxAdd.jsp'> Ajouter un jeu </a>");
+        }
+        else {
             out.println("<br/><br/><a class='button' href='jeuxAdd.jsp'> Ajouter un nouveau jeu </a>");
-            out.println("<h2>Voici vos jeux : </h2>");
+            out.println("<h2>Vous avez " + currentUser.getJeux().size() + " jeux : </h2>");
             for (Jeux jeux : currentUser.getJeux()) {
                 out.println("<h2> Jeu </h3>");
                 out.println("<h3> Titre : " + jeux.getTitre() + "</h3>");

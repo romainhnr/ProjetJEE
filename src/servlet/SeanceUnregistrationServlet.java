@@ -14,6 +14,7 @@ import java.util.UUID;
 
 import static servlet.InitServlet.CONTEXT_SEANCES;
 
+// séance gérant la désinscription d'une séance
 @WebServlet(name = "SeanceUnregistrationServlet")
 public class SeanceUnregistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,11 +36,11 @@ public class SeanceUnregistrationServlet extends HttpServlet {
 
                 if (listUserRegisteredCertain.contains(currentUser)){
                     seance_to_unregister.removeListUserInscritCertain(currentUser);
-                    seance_to_unregister.removeListUserInscrit(currentUser);
+                    //seance_to_unregister.removeListUserInscrit(currentUser);
                 }
                 else if (listUserRegisteredUncertain.contains(currentUser)){
                     seance_to_unregister.removeListUserInscritIncertain(currentUser);
-                    seance_to_unregister.removeListUserInscrit(currentUser);
+                    //seance_to_unregister.removeListUserInscrit(currentUser);
                 }
                 else {
                     String error_message_seance_unregistration = "Erreur : Vous n'êtes pas inscrit à la séance";
@@ -55,14 +56,12 @@ public class SeanceUnregistrationServlet extends HttpServlet {
                 request.setAttribute("message_seance", validation_message_seance_registration);
 
                 this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
-
-            }
-            else{
-                String error_message_seance_unregistration = "Erreur : la séance ou l'utilisateur n'a pas été trouvé";
-                request.setAttribute("message_seance", error_message_seance_unregistration);
-                this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
             }
         }
+        // séance non trouvée après le for parcourant chacune d'entre elles ou user null
+        String error_message_seance_unregistration = "Erreur : la séance ou l'utilisateur n'a pas été trouvé";
+        request.setAttribute("message_seance", error_message_seance_unregistration);
+        this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
 
     }
 }

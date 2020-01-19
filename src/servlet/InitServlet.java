@@ -9,8 +9,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +17,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+// Servlet lancé au démarrage permettant de lire les données des fichiers csv et de reconstruire les objets précédements créés
+
+// Précision sur l'écriture des fichiers (cela ne concerne pas cette servlet directement)
+// pour toute écriture dans les fichiers csv que vous retrouverez un peu partout dans le programme (dès qu'il faut sauvegarder des données)
+// l'écriture se fait dans le dossier out, plus précisément sur ce chemin : "ProjetJEE\out\artifacts\ProjetJEE_war_exploded\data"
+// cela ne se fait pas directement dans le dossier : "ProjetJEE\web\data" comme pour la première lecture d'initialisation
+// cependant ces deux dossiers sont bien évidemment liés
+// mais l'écriture directe ne se fait pas au même endroit et les prochaines lectures se feront également dans le dossier out
 
 @WebServlet(name = "InitServlet")
 public class InitServlet extends HttpServlet {

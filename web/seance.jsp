@@ -1,6 +1,8 @@
 <%@ page import="model.Seance" %>
 <%@ page import="java.util.List" %>
-<%@ page import="servlet.InitServlet" %><%--
+<%@ page import="servlet.InitServlet" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: romai
   Date: 03/12/2019
@@ -34,22 +36,25 @@
         }
         else {
             for (Seance seance : listSeance) {
-                out.println("<div class='divSeance'> <h2> Séance </h2>");
-                out.println("<h3> Date : " + seance.getDate() + "</h2>");
-                out.println("<h3> Horaire de début : " + seance.getHoraireDebut() + "</h3>");
-                out.println("<h3> Horaire de fin : " + seance.getHoraireFin() + "</h3>");
-                if(seance.getListUserInscritCertain().contains(currentUser) || seance.getListUserInscritIncertain().contains(currentUser)){
-                    out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
+                if(seance.getDate().isAfter(LocalDate.now())) {
+                    out.println("<div class='divSeance'> <h2> Séance </h2>");
+                    out.println("<h3> Date : " + seance.getDate().getDayOfMonth() + "/" + seance.getDate().getMonthValue() + "/" + seance.getDate().getYear() + "</h2>");
+                    out.println("<h3> Horaire de début : " + seance.getHoraireDebut() + "</h3>");
+                    out.println("<h3> Horaire de fin : " + seance.getHoraireFin() + "</h3>");
+                    if (seance.getListUserInscritCertain().contains(currentUser) || seance.getListUserInscritIncertain().contains(currentUser)) {
+                        out.println("<a class='button' href='unregistration_seance?id=" + seance.getIdSeance() + "'>Se désinscrire</a>");
+                    } else {
+                        out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
+                    }
+                    out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir la liste des inscrits</a><br/>");
+                    if (currentUser.getRole() == User.Role.ADMIN) {
+                        out.println("<a class='buttonImportant' href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
+                        out.println("<a class='buttonImportant' href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a></div>");
+                    }
+                    else{
+                        out.println("</div>");
+                    }
                 }
-                else{
-                    out.println("<a class='button' href='registration_seance?id=" + seance.getIdSeance() + "'>S'inscrire</a>");
-                }
-                out.println("<a class='button' href='details_seance?id=" + seance.getIdSeance() + "'>Voir la liste des inscrits</a><br/>");
-                if (currentUser.getRole() == User.Role.ADMIN) {
-                    out.println("<a class='buttonImportant' href='modify_seance?id=" + seance.getIdSeance() + "'>Modifier la séance</a>");
-                    out.println("<a class='buttonImportant' href='add_remove_seance?id=" + seance.getIdSeance() + "'>Supprimer la séance</a></div>");
-                }
-
             }
         }
 

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import static servlet.InitServlet.CONTEXT_SEANCES;
 
+// servlet gérant la page avec les détails d'une séance : avec la liste des inscrits, les jeux demandés pour la séance
 @WebServlet(name = "SeanceDetailsServlet")
 public class SeanceDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,13 +31,12 @@ public class SeanceDetailsServlet extends HttpServlet {
                 request.getServletContext().setAttribute("seanceDetails_to_show", seanceDetails_to_show);
 
                 this.getServletContext().getRequestDispatcher("/seanceDetails.jsp").forward(request, response);
+            }
 
-            }
-            else{
-                String error_message_seance_delete = "Erreur : la séance n'a pas été trouvée";
-                request.setAttribute("message_seance", error_message_seance_delete);
-                this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
-            }
         }
+        // séance non trouvée après le for parcourant chacune d'entre elles
+        String error_message_seance_delete = "Erreur : la séance n'a pas été trouvée";
+        request.setAttribute("message_seance", error_message_seance_delete);
+        this.getServletContext().getRequestDispatcher("/seance.jsp").forward(request, response);
     }
 }

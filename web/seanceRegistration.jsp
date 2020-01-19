@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
+<% if(currentUser != null) { %>
 <html>
 <head>
     <title>Inscription séance</title>
@@ -30,7 +31,6 @@
         </form>
     </div>
 </body>
-
 <script type="text/javascript">
     let status = document.getElementById("status").value;
     status.options[status.selectedIndex].value;
@@ -47,3 +47,4 @@ function test(){
 }
 </script>
 </html>
+<% } %>
