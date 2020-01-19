@@ -1,4 +1,8 @@
-<%--
+<%@ page import="model.Seance" %>
+<%@ page import="java.util.List" %>
+<%@ page import="servlet.InitServlet" %>
+<%@ page import="java.util.UUID" %>
+<%@ page import="model.Jeux" %><%--
   Created by IntelliJ IDEA.
   User: rayha
   Date: 12/12/2019
@@ -8,44 +12,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="navbar.jsp"%>
 <body>
-<%
-    if(currentUser != null) { %>
-<div class="test">
-    <form id="formJeux" class="formJeux" action="askGameServlet" method="post">
-        <label for="thème">Thème : </label><br/>
-        <select name="choixTheme" id="thème">
-            <option value="Jeu de role">Jeu de rôle</option>
-            <option value="Jeu ambiance">Jeu d'ambiance</option>
-            <option value="Jeu de strategie">Jeu de stratégie</option>
-        </select>
-        <br/><br/>
-        <label for="titre">Titre du jeu : </label><br/>
-        <input type="text" id="titre" name="titre">
-        <br/><br/>
-        <label for="duree">Durée : </label><br/>
-        <input type="number" id="duree" name="duree" min="1">
-        <br/><br/>
-        <label for="nbmin">Joueurs min. (2) : </label><br/>
-        <input type="number" id="nbmin" min="2" value="2" name="nbmin">
-        <br/><br/>
-        <label for="nbmax">Joueurs max. (10) : </label><br/>
-        <input type="number" id="nbmax" max = "10" name="nbmax">
-        <br/><br/>
-        <label for="description">Description : </label><br/>
-        <textarea id="description" form="formJeux" rows="5" cols="30" name="description">Entrez une description brève du jeu</textarea>
-        <br/><br/>
-        <input type="submit" class='button' value="Demander le jeu">
-    </form>
-    <% if((request.getAttribute("message_jeu")) != null)
-    {
-        String error_message = (String) request.getAttribute("message_jeu");
-        out.println("<p class='errorMsg'> " + error_message + "</p>");
-    }
+    <%
+        List<Seance> listSeance = (List<Seance>) request.getServletContext().getAttribute(InitServlet.CONTEXT_SEANCES);
+        String id = request.getParameter("id");
+
+        for (Seance seance : listSeance) {
+            List<User> userIncertain = seance.getListUserInscritIncertain();
+            List<User> userCertain = seance.getListUserInscritCertain();
+
+            for(User user : userCertain) {
+                out.println("<h3>Jeux des utilisateurs certains : </h3>");
+                for (Jeux jeux : user.getJeux()) {
+                    out.println("<div class='borderJ'> <h3> Titre : " + jeux.getTitre() + "</h3>");
+                    out.println("<h3> Thème : " + jeux.getTheme() + "</h3>");
+                    out.println("<h3> Durée : " + jeux.getDuree() + " min.</h3> </div>");
+                    out.println("<a class='button' href='seance.jsp'> Demander le jeu </a>");
+                }
+            }
+
+            for(User user : userIncertain) {
+                out.println("<h3>Jeux des utilisateurs Incertains : </h3>");
+                for (Jeux jeux : user.getJeux()) {
+                    out.println("<div class='borderJ'> <h3> Titre : " + jeux.getTitre() + "</h3>");
+                    out.println("<h3> Thème : " + jeux.getTheme() + "</h3>");
+                    out.println("<h3> Durée : " + jeux.getDuree() + " min.</h3> </div>");
+                    out.println("<a class='button' href='seance.jsp'> Demander le jeu </a>");
+                }
+            }
+        }
+
 
     %>
-</div>
-<% } %>
-
 
 </body>
 </html>
